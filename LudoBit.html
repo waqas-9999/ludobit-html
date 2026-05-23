@@ -1,12 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="global.css">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LudoBit</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+  <!-- React & ReactDOM (UMD) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- React Icons (UMD build) -->
+  <script src="https://unpkg.com/react-icons@4.8.0/umd/react-icons.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <h1 class="title">LudoBit</h1>
+
+<!-- APP HEADER (shown after login) -->
+<header class="app-header" id="appHeader" hidden>
+  <div class="header-logo">
+    <img src="./assets/Ludo-Game.png" alt="LudoBit Logo" class="logo-img">
+  </div>
+  <div class="header-actions">
+    <div class="wallet-pill">
+      <i class="fa-solid fa-wallet"></i>
+      <span class="wallet-balance">1,250.75</span>
+      <button type="button" class="wallet-add" aria-label="Add funds">+</button>
+    </div>
+    <div class="profile-wrap">
+      <img src="https://i.pravatar.cc/80?img=12" alt="Profile" class="profile-avatar">
+      <span class="profile-online"></span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-wrap">
+    <div class="hero-background"></div>
+</div>
+
+<!-- CTA CARD -->
+<div class="cta-card" id="ctaCard">
+  <!-- Guest view -->
+  <div class="cta-view cta-guest" id="ctaGuest">
+    <div class="cta-title">Start Playing <span>Instantly</span></div>
+    <div class="cta-divider"><span>◇</span></div>
+    <div class="cta-sub">Play & Earn Rewards</div>
+    <div class="cta-action">
+      <button type="button" class="btn-login" id="btnLogin">Login</button>
+    </div>
+    <div class="cta-divider-2"><div></div></div>
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fas fa-bolt"></i></div>
+        <div class="trust-label">Instant Access</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-user-check"></i></div>
+        <div class="trust-label">Global Access</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-star"></i></div>
+        <div class="trust-label">Secure & Safe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logged-in view -->
+  <div class="cta-view cta-logged-in" id="ctaLoggedIn" hidden>
+    <div class="cta-title">Enter the <span>Game</span></div>
+    <div class="cta-sub">Choose your match and join the battle</div>
+    <div class="cta-divider"><span>◇</span></div>
+    <div class="cta-action">
+      <button type="button" class="btn-play" >Play Now</button>
+    </div>
+    <div class="cta-divider-2"><div></div></div>
+    <div class="trust-row trust-row--logged-in">
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="trust-label trust-label--bold">Verified</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fas fa-bolt"></i></div>
+        <div class="trust-label trust-label--bold">Fast Matches</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-regular fa-star"></i></div>
+        <div class="trust-label trust-label--bold">Big Rewards</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- BONUS GRID -->
+  <div class="bonus-grid">
+    <!-- Top-up Bonus -->
+    <div class="bonus-card">
+      <div class="bonus-tag">Top-up Bonus <span class="dot">✦</span></div>
+      <div class="bonus-group">
+      <div>
+        <div class="bonus-amount">+5%</div>
+      <div class="bonus-desc">Extra rewards on top-ups of 5 USDT+</div>
+      </div>
+      <img src="./assets/gift.png" alt="Bonus Icon" class="bonus-img">
+      </div> 
+      <button class="btn-outline" style="border-color:#fed9a6;">Top-up Now <span>→</span></button>
+    </div>
+    <!-- Refer & Earn -->
+    <div class="bonus-card">
+      <div class="bonus-tag" style="color:var(--purple)"> Refer & Earn</div>
+      <div class="refer-group">
+      <img src="./assets/refer.png" alt="Bonus Icon" class="refer-img">
+      <div class="refer-group">
+        <div class="bonus-desc">Invite friends and earn more rewards!</div>
+      <div class="refer-spacer"></div>
+      </div>
+      </div>
+      <button class="btn-outline" style="border-color:rgba(108,63,197,0.25);">Invite Now <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- LIVE WINNERS -->
+  <div>
+    <div class="section-header">
+      <div class="live-dot"></div>
+      <div class="section-title">Live Winners</div>
+    </div>
+    <div class="winners-scroll">
+      <div class="winner-card top">
+        <div class="winner-badge">🏆 Winner</div>
+        <div class="winner-crown">👑</div>
+        <div class="winner-name">AARAV</div>
+        <div class="winner-label">Won</div>
+        <div class="winner-amount">$15.20</div>
+        <div class="winner-time">2m ago</div>
+      </div>
+      <div class="winner-card">
+        <div class="winner-crown">👑</div>
+        <div class="winner-name">PRIYA</div>
+        <div class="winner-label">Won</div>
+        <div class="winner-amount">$7.50</div>
+        <div class="winner-time">3m ago</div>
+      </div>
+      <div class="winner-card">
+        <div class="winner-crown">👑</div>
+        <div class="winner-name">ROHAN</div>
+        <div class="winner-label">Won</div>
+        <div class="winner-amount">$12.10</div>
+        <div class="winner-time">5m ago</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER TRUST -->
+  <div class="footer-trust">
+    <div class="ft-item">
+      <div class="ft-icon">🛡️</div>
+      <div class="ft-label">Verified</div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">🔞</div>
+      <div class="ft-label">18+ Only</div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">🔒</div>
+      <div class="ft-label">Fast & Secure</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var btnLogin = document.getElementById('btnLogin');
+  var appHeader = document.getElementById('appHeader');
+  var ctaGuest = document.getElementById('ctaGuest');
+  var ctaLoggedIn = document.getElementById('ctaLoggedIn');
+
+  btnLogin.addEventListener('click', function () {
+    document.body.classList.add('is-logged-in');
+    appHeader.hidden = false;
+    ctaGuest.hidden = true;
+    ctaLoggedIn.hidden = false;
+  });
+})();
+</script>
+
 </body>
 </html>
