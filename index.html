@@ -26,10 +26,10 @@
       <span class="wallet-balance">1,250.75</span>
       <button type="button" class="wallet-add" aria-label="Add funds">+</button>
     </div>
-    <div class="profile-wrap">
+    <a class="profile-wrap" href="./profile.html">
       <img src="https://i.pravatar.cc/80?img=12" alt="Profile" class="profile-avatar">
       <span class="profile-online"></span>
-    </div>
+    </a>
   </div>
 </header>
 
@@ -73,6 +73,7 @@
     <div class="cta-action">
       <button type="button" class="btn-play" >Play Now</button>
     </div>
+    
     <div class="cta-divider-2"><div></div></div>
     <div class="trust-row trust-row--logged-in">
       <div class="trust-item">
@@ -157,7 +158,7 @@
   <!-- FOOTER TRUST -->
   <div class="footer-trust">
     <div class="ft-item">
-      <div class="ft-icon">🛡️</div>
+      <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
       <div class="ft-label">Verified</div>
     </div>
     <div class="ft-item">
@@ -174,17 +175,31 @@
 
 <script>
 (function () {
+
   var btnLogin = document.getElementById('btnLogin');
   var appHeader = document.getElementById('appHeader');
   var ctaGuest = document.getElementById('ctaGuest');
   var ctaLoggedIn = document.getElementById('ctaLoggedIn');
 
+  // Header hidden before login
+  appHeader.hidden = true;
+
   btnLogin.addEventListener('click', function () {
+
     document.body.classList.add('is-logged-in');
+
+    // Show header after login
     appHeader.hidden = false;
+
+    // Switch CTA
     ctaGuest.hidden = true;
     ctaLoggedIn.hidden = false;
+
+    // Change banner
+    document.querySelector('.hero-background').style.backgroundImage =
+      "url('./assets/login-banner.png')";
   });
+
 })();
 </script>
 

@@ -44,7 +44,6 @@
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
-    background: var(--bg);
   }
 
   body {
@@ -326,32 +325,41 @@
     100% { left: 200%; }
   }
   .btn-login:active { transform: scale(0.97); box-shadow: 0 3px 10px rgba(247,148,29,0.3); }
-
+[hidden]{
+  display:none !important;
+}
   .btn-play {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(6px, 2vw, 10px);
-    width: min(var(--btn-width), 78%);
+    display: block;
+    width: var(--btn-width);
     max-width: 100%;
-    padding: clamp(10px, 3vw, 14px) clamp(16px, 4vw, 20px);
-    background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e07a00 100%);
+    padding: clamp(10px, 3vw, 12px) clamp(16px, 4vw, 24px);
+    background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 50%, var(--orange-dark) 100%);
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: var(--font-btn);
-    font-weight: 700;
+    font-weight: 600;
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     box-shadow: 0 6px 20px rgba(247,148,29,0.45);
     transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
   }
-  .btn-play i { font-size: clamp(14px, 3.8vw, 16px); }
-  .btn-play:active {
-    transform: scale(0.97);
-    box-shadow: 0 3px 10px rgba(247,148,29,0.3);
+  .btn-play::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 2.5s infinite;
   }
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+  .btn-play:active { transform: scale(0.97); box-shadow: 0 3px 10px rgba(247,148,29,0.3); }
 
   .cta-logged-in .cta-title {
     margin-bottom: 6px;
