@@ -174,8 +174,8 @@
   }
 
   .profile-avatar {
-    width: clamp(28px, 8vw, 34px);
-    height: clamp(28px, 8vw, 34px);
+    width: clamp(32px, 12vw, 38px);
+    height: clamp(32px, 12vw, 38px);
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--orange);
