@@ -7,7 +7,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   <style>
   *{
   margin:0;
@@ -34,6 +36,13 @@ body{
   max-width:640px;
   margin:0 auto;
   padding:10px 10px 16px;
+}
+
+.oswald-font{
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 /* TOPBAR */
@@ -185,7 +194,7 @@ body{
 
 .main-balance{
   font-size:30px;
-  font-weight:700;
+  font-weight:600;
   margin-bottom:12px;
   color:#000;
   line-height:1;
@@ -212,8 +221,8 @@ body{
 }
 
 .mini-amount{
-  font-size:16px;
-  font-weight:700;
+  font-size:13px;
+  font-weight:600;
   color:#000;
 }
 
@@ -421,7 +430,6 @@ body{
 .gift{
   width:46px;
   height:46px;
-  border-radius:50%;
   background:#fff;
   display:flex;
   align-items:center;
@@ -514,8 +522,8 @@ body{
   }
 
   .gift{
-    width:40px;
-    height:40px;
+    width:36px;
+    height:36px;
     font-size:18px;
   }
 
@@ -526,6 +534,93 @@ body{
   .btn{
     font-size:10px;
     height:34px;
+  }
+
+}
+.info-btn{
+  color:#8b8b95;
+  font-size:11px;
+  cursor:pointer;
+  margin-left:4px;
+}
+
+.info-btn:active{
+  transform:scale(.9);
+}
+/* POPUP */
+
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:999;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.popup-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.popup-box{
+  width:100%;
+  max-width:320px;
+  background:#fff;
+  border-radius:24px;
+  padding:34px 22px 22px;
+  text-align:center;
+  animation:popupShow .25s ease;
+}
+
+.popup-box h2{
+  font-size:28px;
+  font-weight:700;
+  color:#07124d;
+  margin-bottom:20px;
+  line-height:1.1;
+}
+
+.popup-box p{
+  font-size:16px;
+  line-height:1.7;
+  color:#6a6a78;
+  margin-bottom:10px;
+}
+
+.popup-box button{
+  width:100%;
+  height:54px;
+  border:none;
+  border-radius:16px;
+  margin-top:26px;
+  background:linear-gradient(
+    135deg,
+    #ff9a3d 0%,
+    #ff6b00 100%
+  );
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+@keyframes popupShow{
+
+  from{
+    transform:scale(.9);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
   }
 
 }
@@ -563,7 +658,8 @@ body{
     <div class="balance-top">
       <div class="balance-title">
         Balance
-        <i class="fa-solid fa-circle-info"></i>
+        <i class="fa-solid fa-circle-info info-btn"
+     onclick="openPopup('balancePopup')"></i>
       </div>
 
       <div class="details">
@@ -572,26 +668,28 @@ body{
       </div>
     </div>
 
-    <div class="main-balance">$0.00</div>
+    <div class="main-balance oswald-font">$0.00</div>
 
     <div class="balance-grid">
 
       <div>
         <div class="mini-label">
           Deposit Balance
-          <i class="fa-solid fa-circle-info"></i>
+           <i class="fa-solid fa-circle-info info-btn"
+     onclick="openPopup('depositPopup')"></i>
         </div>
 
-        <div class="mini-amount">$0.00</div>
+        <div class="mini-amount oswald-font">$0.00</div>
       </div>
 
       <div>
         <div class="mini-label">
           Winning Balance
-          <i class="fa-solid fa-circle-info"></i>
+          <i class="fa-solid fa-circle-info info-btn"
+     onclick="openPopup('winningPopup')"></i>
         </div>
 
-        <div class="mini-amount">$0.00</div>
+        <div class="mini-amount oswald-font">$0.00</div>
       </div>
 
     </div>
@@ -611,6 +709,73 @@ body{
     </div>
 
   </div>
+  <!-- BALANCE POPUP -->
+<div class="popup-overlay" id="balancePopup">
+
+  <div class="popup-box">
+
+    <h2>Balance</h2>
+
+    <p>
+      Total balance across your
+      Deposit and Winning wallets.
+    </p>
+
+    <button onclick="closePopup('balancePopup')">
+      Got it
+    </button>
+
+  </div>
+
+</div>
+
+<!-- DEPOSIT POPUP -->
+<div class="popup-overlay" id="depositPopup">
+
+  <div class="popup-box">
+
+    <h2>Deposit Balance</h2>
+
+    <p>
+      Includes deposited funds,
+      deposit bonuses,
+      and referral rewards.
+    </p>
+
+    <p>
+      Can be used only for playing games.
+    </p>
+
+    <button onclick="closePopup('depositPopup')">
+      Got it
+    </button>
+
+  </div>
+
+</div>
+
+<!-- WINNING POPUP -->
+<div class="popup-overlay" id="winningPopup">
+
+  <div class="popup-box">
+
+    <h2>Winning Balance</h2>
+
+    <p>
+      Amount earned from your game winnings.
+    </p>
+
+    <p>
+      Can be used to play again or withdrawn anytime.
+    </p>
+
+    <button onclick="closePopup('winningPopup')">
+      Got it
+    </button>
+
+  </div>
+
+</div>
 
   <!-- GAME -->
   <div class="card">
@@ -663,7 +828,7 @@ body{
 
     <div>
       <div class="refer-title">
-        Refer a Friend & Earn up to $20!
+        Refer a Friend & Earn
       </div>
 
       <div class="refer-desc">
@@ -725,6 +890,31 @@ body{
     </div>
 
   </div>
+<script>
 
+function openPopup(id){
+  document.getElementById(id).classList.add("active");
+}
+
+function closePopup(id){
+  document.getElementById(id).classList.remove("active");
+}
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+document.querySelectorAll(".popup-overlay").forEach(function(overlay){
+
+  overlay.addEventListener("click", function(e){
+
+    /* if clicked on dark overlay only */
+    if(e.target === overlay){
+      overlay.classList.remove("active");
+    }
+
+  });
+
+});
+
+</script>
 </body>
 </html>
