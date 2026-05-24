@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+  --orange:#ff9800;
+  --orange-dark:#ff5e00;
+  --text:#0b1140;
+  --muted:#70758f;
+  --border:#ece7e3;
+  --card:#ffffff;
+  --bg:#f8f8f8;
+  --green:#18c56e;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:14px;
+}
+
+/* HEADER */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.icon-btn{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--orange-dark);
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.page-title{
+  font-size:28px;
+  font-weight:700;
+}
+
+/* TABS */
+
+.deposit-tabs{
+  background:#fff;
+  border-radius:22px;
+  padding:6px;
+  display:flex;
+  margin-bottom:18px;
+  box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+
+.deposit-tab{
+  flex:1;
+  height:58px;
+  border:none;
+  border-radius:18px;
+  background:transparent;
+  color:#7d8198;
+  font-size:18px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.deposit-tab.active{
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+  color:#fff;
+}
+
+.deposit-tab i{
+  font-size:24px;
+}
+@media (max-width:480px){
+
+  body{
+    padding:10px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  .icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    font-size:18px;
+  }
+
+  .deposit-tabs{
+    border-radius:18px;
+  }
+
+  .deposit-tab{
+    height:48px;
+    font-size:15px;
+  }
+
+  .deposit-tab i{
+    font-size:18px;
+  }
+}
+</style>
+<!-- HEADER -->
+
+<div class="topbar">
+
+  <div class="icon-btn">
+    <i class="fa-solid fa-arrow-left"></i>
+  </div>
+
+  <div class="page-title">
+    Fiat Deposit
+  </div>
+
+  <div class="icon-btn">
+    <i class="fa-regular fa-file-lines"></i>
+  </div>
+
+</div>
+
+<!-- TABS -->
+
+<div class="deposit-tabs">
+
+  <button class="deposit-tab">
+    <i class="fa-brands fa-bitcoin"></i>
+    Crypto
+  </button>
+
+  <button class="deposit-tab active">
+    <i class="fa-solid fa-building-columns"></i>
+    Fiat
+  </button>
+
+</div>
+    
+</body>
+</html>

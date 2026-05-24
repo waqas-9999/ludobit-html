@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>LudoBit Deposit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+  --orange:#ff9800;
+  --orange-dark:#ff5e00;
+  --text:#0b1140;
+  --muted:#70758f;
+  --border:#ece7e3;
+  --card:#ffffff;
+  --bg:#f8f8f8;
+  --green:#18c56e;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:14px;
+}
+
+/* HEADER */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.icon-btn{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--orange-dark);
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.page-title{
+  font-size:28px;
+  font-weight:700;
+}
+
+/* TABS */
+
+.deposit-tabs{
+  background:#fff;
+  border-radius:22px;
+  padding:6px;
+  display:flex;
+  margin-bottom:18px;
+  box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+
+.deposit-tab{
+  flex:1;
+  height:58px;
+  border:none;
+  border-radius:18px;
+  background:transparent;
+  color:#7d8198;
+  font-size:18px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.deposit-tab.active{
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+  color:#fff;
+}
+
+.deposit-tab i{
+  font-size:24px;
+}
+
+/* BONUS */
+
+.bonus-strip{
+  height:52px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:20px;
+  color:#6c708a;
+  font-size:15px;
+}
+
+.bonus-strip i{
+  color:var(--orange-dark);
+  font-size:18px;
+}
+
+.bonus-strip span{
+  color:var(--orange-dark);
+  font-weight:700;
+}
+
+/* CARD */
+
+.deposit-card{
+  background:#fff;
+  border-radius:26px;
+  padding:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.04);
+  margin-bottom:18px;
+}
+
+/* LABEL */
+
+.section-label{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+/* GRID */
+
+.deposit-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+/* SELECT */
+
+.select-box{
+  height:74px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#fff;
+}
+
+.select-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.coin-icon{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.select-value{
+  font-size:16px;
+  font-weight:600;
+}
+
+.select-box i{
+  color:#7b7f95;
+  font-size:18px;
+}
+
+/* INPUT */
+
+.deposit-input{
+  width:100%;
+  height:76px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  padding:0 18px;
+  font-size:18px;
+  font-family:'Poppins',sans-serif;
+  outline:none;
+  margin-bottom:18px;
+}
+
+.deposit-input::placeholder{
+  color:#9da2ba;
+}
+
+/* BUTTON */
+
+.deposit-btn{
+  width:100%;
+  height:68px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:16px;
+  box-shadow:0 8px 20px rgba(255,120,0,.25);
+}
+
+/* INFO */
+
+.info-row{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  color:#7a8098;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.info-row i{
+  color:var(--orange-dark);
+  font-size:18px;
+  margin-top:2px;
+}
+
+/* ADDRESS */
+
+.address-title{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.address-box{
+  display:flex;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.qr-box{
+  width:130px;
+  height:130px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid var(--border);
+  padding:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.qr-box img{
+  width:100%;
+}
+
+.address-copy{
+  flex:1;
+  border-radius:18px;
+  border:1px solid #f5dac4;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.address-text{
+  font-size:15px;
+  line-height:1.8;
+  word-break:break-word;
+}
+
+.copy-btn{
+  color:var(--orange-dark);
+  font-size:26px;
+}
+
+/* WARNING */
+
+.warning-box{
+  background:#f4fff8;
+  border:1px solid #cfeedd;
+  border-radius:18px;
+  padding:16px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.warning-icon{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:20px;
+}
+
+.warning-text{
+  color:#4b516d;
+  font-size:15px;
+  line-height:1.7;
+}
+
+.warning-text span{
+  color:var(--green);
+  font-weight:700;
+}
+
+/* FOOTER */
+
+.security-box{
+  background:#fff;
+  border-radius:22px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,.04);
+}
+
+.security-icon{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#fff6ef;
+  color:var(--orange-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  flex-shrink:0;
+}
+
+.security-text{
+  color:#555b78;
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  body{
+    padding:10px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  .icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    font-size:18px;
+  }
+
+  .deposit-tabs{
+    border-radius:18px;
+  }
+
+  .deposit-tab{
+    height:48px;
+    font-size:15px;
+  }
+
+  .deposit-tab i{
+    font-size:18px;
+  }
+
+  .bonus-strip{
+    height:44px;
+    font-size:12px;
+    padding:0 12px;
+  }
+
+  .deposit-card{
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .section-label{
+    font-size:14px;
+  }
+
+  .deposit-grid{
+    gap:10px;
+  }
+
+  .select-box{
+    height:60px;
+    border-radius:14px;
+    padding:0 12px;
+  }
+
+  .coin-icon{
+    width:32px;
+    height:32px;
+  }
+
+  .select-value{
+    font-size:13px;
+  }
+
+  .deposit-input{
+    height:60px;
+    border-radius:14px;
+    font-size:14px;
+  }
+
+  .deposit-btn{
+    height:56px;
+    border-radius:14px;
+    font-size:16px;
+  }
+
+  .info-row{
+    font-size:12px;
+  }
+
+  .address-title{
+    font-size:14px;
+  }
+
+  .address-box{
+    gap:10px;
+  }
+
+  .qr-box{
+    width:96px;
+    height:96px;
+    border-radius:14px;
+  }
+
+  .address-copy{
+    padding:12px;
+    border-radius:14px;
+  }
+
+  .address-text{
+    font-size:12px;
+    line-height:1.6;
+  }
+
+  .copy-btn{
+    font-size:20px;
+  }
+
+  .warning-box{
+    padding:12px;
+    border-radius:14px;
+  }
+
+  .warning-icon{
+    width:32px;
+    height:32px;
+    font-size:15px;
+  }
+
+  .warning-text{
+    font-size:12px;
+  }
+
+  .security-box{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .security-icon{
+    width:42px;
+    height:42px;
+    font-size:20px;
+  }
+
+  .security-text{
+    font-size:12px;
+  }
+
+}
+
+/* DISABLED BUTTON */
+
+.deposit-btn{
+  opacity:.5;
+  pointer-events:none;
+  transition:.25s;
+}
+
+/* ACTIVE BUTTON */
+
+.deposit-btn.active-btn{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* SELECT */
+/* SELECT ICON IMAGE SIZE */
+
+.select-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:30px;
+  height:30px;
+
+  min-width:30px;
+  min-height:30px;
+
+  border-radius:50%;
+  object-fit:cover;
+
+  background:#fff;
+
+  pointer-events:none;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .select-icon{
+
+    width:22px;
+    height:22px;
+
+    min-width:22px;
+    min-height:22px;
+
+    left:14px;
+  }
+
+}
+.select-icon{
+  width:34px;
+  height:34px;
+}
+.select-wrapper{
+  position:relative;
+}
+
+.custom-select{
+  width:100%;
+  height:74px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:#fff;
+  padding:0 50px 0 18px;
+  font-size:16px;
+  font-weight:600;
+  font-family:'Poppins',sans-serif;
+  color:var(--text);
+  outline:none;
+  appearance:none;
+  cursor:pointer;
+}
+
+.select-wrapper i{
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#7b7f95;
+  font-size:16px;
+  pointer-events:none;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .custom-select{
+    height:60px;
+    border-radius:14px;
+    font-size:13px;
+    padding:0 42px 0 14px;
+  }
+
+  .select-wrapper i{
+    right:14px;
+    font-size:13px;
+  }
+
+}
+/* CUSTOM DROPDOWN */
+
+.custom-dropdown{
+  position:relative;
+}
+
+.dropdown-selected{
+  height:74px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:#fff;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.selected-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.coin-img{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.dropdown-selected span{
+  font-size:16px;
+  font-weight:600;
+}
+
+.dropdown-selected i{
+  color:#7b7f95;
+  font-size:16px;
+}
+
+/* OPTIONS */
+
+.dropdown-options{
+  position:absolute;
+  top:84px;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-radius:18px;
+  padding:8px;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  display:none;
+  z-index:99;
+}
+
+.custom-dropdown.active .dropdown-options{
+  display:block;
+}
+
+.dropdown-option{
+  height:58px;
+  border-radius:14px;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+}
+
+.dropdown-option:hover{
+  background:#fff6ef;
+}
+
+.dropdown-option.active{
+  background:#fff1e3;
+}
+
+.dropdown-option span{
+  font-size:14px;
+  font-weight:500;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .dropdown-selected{
+    height:60px;
+    border-radius:14px;
+    padding:0 14px;
+  }
+
+  .dropdown-options{
+    top:68px;
+    border-radius:14px;
+  }
+
+  .dropdown-option{
+    height:50px;
+    border-radius:12px;
+  }
+
+  .coin-img{
+    width:22px;
+    height:22px;
+  }
+
+  .dropdown-selected span{
+    font-size:13px;
+  }
+
+  .dropdown-option span{
+    font-size:12px;
+  }
+
+}
+
+/* COPY BUTTON */
+
+.copy-btn{
+  color:var(--orange-dark);
+  font-size:24px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.copy-btn:active{
+  transform:scale(.92);
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%) translateY(100px);
+
+  background:#111827;
+  color:#fff;
+
+  height:52px;
+  padding:0 18px;
+
+  border-radius:14px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:14px;
+  font-weight:500;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.35s;
+
+  z-index:9999;
+}
+
+.toast i{
+  color:#00d26a;
+  font-size:18px;
+}
+
+/* SHOW */
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .toast{
+    height:44px;
+    padding:0 14px;
+    font-size:12px;
+    border-radius:12px;
+    bottom:18px;
+  }
+
+  .toast i{
+    font-size:15px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="topbar">
+
+  <div class="icon-btn">
+    <i class="fa-solid fa-arrow-left"></i>
+  </div>
+
+  <div class="page-title">
+    Deposit
+  </div>
+
+  <div class="icon-btn">
+    <i class="fa-regular fa-file-lines"></i>
+  </div>
+
+</div>
+
+<!-- TABS -->
+
+<div class="deposit-tabs">
+
+  <button class="deposit-tab active">
+    <i class="fa-brands fa-bitcoin"></i>
+    Crypto
+  </button>
+
+  <a class="deposit-tab" style="text-decoration: none;" href="fiat.html">
+    <i class="fa-solid fa-building-columns"></i>
+    Fiat
+  </a>
+
+</div>
+
+<!-- BONUS -->
+
+<div class="bonus-strip">
+  <i class="fa-solid fa-gift"></i>
+  <div>
+    <span>5% EXTRA</span> on deposits above 5 USD
+  </div>
+</div>
+
+<!-- DEPOSIT FORM -->
+
+<div class="deposit-card">
+
+  <div class="deposit-grid">
+
+   <!-- CURRENCY -->
+<!-- CURRENCY SELECT -->
+
+<div class="custom-dropdown" id="currencyDropdown">
+
+  <!-- SELECTED -->
+
+  <div class="dropdown-selected">
+
+    <div class="selected-left">
+
+      <img
+      src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
+      class="coin-img"
+      id="selectedCurrencyImg">
+
+      <span id="selectedCurrencyText">
+        USDT
+      </span>
+
+    </div>
+
+    <i class="fa-solid fa-chevron-down"></i>
+
+  </div>
+
+  <!-- OPTIONS -->
+
+  <div class="dropdown-options">
+
+    <div
+    class="dropdown-option active"
+    data-name="USDT"
+    data-img="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
+      class="coin-img">
+
+      <span>USDT</span>
+
+    </div>
+
+    <div
+    class="dropdown-option"
+    data-name="Bitcoin (BTC)"
+    data-img="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
+      class="coin-img">
+
+      <span>Bitcoin (BTC)</span>
+
+    </div>
+
+    <div
+    class="dropdown-option"
+    data-name="Ethereum (ETH)"
+    data-img="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+      class="coin-img">
+
+      <span>Ethereum (ETH)</span>
+
+    </div>
+
+    <div
+    class="dropdown-option"
+    data-name="BNB"
+    data-img="https://cryptologos.cc/logos/bnb-bnb-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/bnb-bnb-logo.png?v=029"
+      class="coin-img">
+
+      <span>BNB</span>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NETWORK -->
+
+<div>
+
+  <div class="select-wrapper">
+
+    <select class="custom-select" id="networkSelect">
+
+      <option value="">Select Network</option>
+
+      <option value="TRC20">Tron (TRC20)</option>
+
+      <option value="ERC20">Ethereum (ERC20)</option>
+
+      <option value="BEP20">BNB Smart Chain (BEP20)</option>
+
+      <option value="SOL">Solana</option>
+
+    </select>
+
+    <i class="fa-solid fa-chevron-down"></i>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- INPUT -->
+
+  <input
+type="text"
+class="deposit-input"
+id="amountInput"
+placeholder="Enter amount to deposit">
+
+  <!-- BUTTON -->
+
+  <button class="deposit-btn" id="generateBtn" disabled>
+  Generate Deposit Address
+</button>
+
+  <!-- INFO -->
+
+  <div class="info-row">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <div>
+      Estimated confirmation time varies by network load.
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ADDRESS SECTION -->
+
+<div id="depositAddressSection" style="display:none;">
+
+  <!-- ADDRESS -->
+
+  <div class="deposit-card">
+
+    <div class="address-title">
+      Deposit address
+    </div>
+
+    <div class="address-box">
+
+      <!-- QR -->
+
+      <div class="qr-box">
+
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=USDT-ADDRESS">
+
+      </div>
+
+      <!-- ADDRESS -->
+
+<div class="address-copy">
+
+  <div
+  class="address-text"
+  id="walletAddress">
+
+    TP62ZTJ1WDDBoPLzzoTMhvEEqf1yPskMqF
+
+  </div>
+
+  <div
+  class="copy-btn"
+  id="copyBtn">
+
+    <i class="fa-regular fa-copy"></i>
+
+  </div>
+
+</div>
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+
+  <i class="fa-solid fa-circle-check"></i>
+
+  <span>
+    Address copied successfully
+  </span>
+
+</div>
+
+    </div>
+
+    <!-- WARNING -->
+
+    <div class="warning-box">
+
+      <div class="warning-icon">
+        !
+      </div>
+
+      <div class="warning-text">
+
+        Send only <span>USDT</span> to this deposit address.
+
+        Transfers below <span>1 USDT</span>
+        will not be credited.
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SECURITY -->
+
+  <div class="security-box">
+
+    <div class="security-icon">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+
+    <div class="security-text">
+      Always double-check the address and network before sending your deposit.
+    </div>
+
+  </div>
+
+</div>
+<script>
+
+/* ========================= */
+/* CUSTOM DROPDOWN */
+/* ========================= */
+
+const dropdown =
+document.getElementById("currencyDropdown");
+
+const selected =
+dropdown.querySelector(".dropdown-selected");
+
+const options =
+dropdown.querySelectorAll(".dropdown-option");
+
+const selectedImg =
+document.getElementById("selectedCurrencyImg");
+
+const selectedText =
+document.getElementById("selectedCurrencyText");
+
+/* SELECTED VALUES */
+
+let selectedCurrency = "USDT";
+let selectedNetwork = "TRC20";
+
+/* OPEN DROPDOWN */
+
+selected.addEventListener("click", function(){
+
+  dropdown.classList.toggle("active");
+
+});
+
+/* SELECT OPTION */
+
+options.forEach(function(option){
+
+  option.addEventListener("click", function(){
+
+    const img =
+    this.getAttribute("data-img");
+
+    const name =
+    this.getAttribute("data-name");
+
+    selectedCurrency = name;
+
+    selectedImg.src = img;
+
+    selectedText.innerText = name;
+
+    options.forEach(function(item){
+      item.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    dropdown.classList.remove("active");
+
+    checkForm();
+
+  });
+
+});
+
+/* CLOSE OUTSIDE */
+
+window.addEventListener("click", function(e){
+
+  if(!dropdown.contains(e.target)){
+    dropdown.classList.remove("active");
+  }
+
+});
+
+/* ========================= */
+/* FORM VALIDATION */
+/* ========================= */
+
+const amountInput =
+document.getElementById("amountInput");
+
+const generateBtn =
+document.getElementById("generateBtn");
+
+/* CHECK FORM */
+
+function checkForm(){
+
+  if(
+    amountInput.value.trim() !== "" &&
+    selectedCurrency !== "" &&
+    selectedNetwork !== ""
+  ){
+
+    generateBtn.disabled = false;
+
+    generateBtn.classList.add("active-btn");
+
+  }else{
+
+    generateBtn.disabled = true;
+
+    generateBtn.classList.remove("active-btn");
+
+  }
+
+}
+
+/* INPUT */
+
+amountInput.addEventListener(
+  "input",
+  checkForm
+);
+
+/* BUTTON CLICK */
+
+generateBtn.addEventListener(
+  "click",
+  function(){
+
+    if(!generateBtn.disabled){
+
+      document.getElementById(
+        "depositAddressSection"
+      ).style.display = "block";
+
+      generateBtn.innerText =
+      "Address Generated";
+
+    }
+
+  }
+);
+
+/* INITIAL */
+
+checkForm();
+/* COPY ADDRESS */
+
+const copyBtn =
+document.getElementById("copyBtn");
+
+const walletAddress =
+document.getElementById("walletAddress");
+
+const toast =
+document.getElementById("toast");
+
+copyBtn.addEventListener("click", async function(){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      walletAddress.innerText
+    );
+
+    /* SHOW TOAST */
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+      toast.classList.remove("show");
+
+    }, 2200);
+
+  }catch(err){
+
+    console.log("Copy failed");
+
+  }
+
+});
+</script>
+</body>
+</html>
