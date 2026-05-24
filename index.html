@@ -13,6 +13,74 @@
   <script src="https://unpkg.com/react-icons@4.8.0/umd/react-icons.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<!-- ========================= -->
+<!-- REFERRAL POPUP -->
+<!-- ========================= -->
+
+<div class="referral-overlay" id="referralPopup">
+
+  <div class="referral-popup">
+
+    <!-- CLOSE -->
+
+    <button class="popup-close" id="closeReferralPopup">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- ICON -->
+
+    <div class="referral-icon-wrap">
+
+      <span class="leaf left">❦</span>
+
+      <div class="gift-circle">
+        🎁
+      </div>
+
+      <span class="leaf right">❦</span>
+
+    </div>
+
+    <!-- TITLE -->
+
+    <h2>
+      Your Referral Link
+    </h2>
+
+    <!-- DESC -->
+
+    <p>
+      Share your link with friends and earn
+      rewards when they join!
+    </p>
+
+    <!-- LINK BOX -->
+
+    <div class="referral-link-box">
+
+      <div
+      class="referral-link-text"
+      id="referralLinkText">
+
+        https://dotscout.com/ref/18536712
+
+      </div>
+
+      <button
+      class="copy-link-btn"
+      id="copyReferralLinkBtn">
+
+        <i class="fa-regular fa-copy"></i>
+
+        Copy
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 <body>
 
 <!-- APP HEADER (shown after login) -->
@@ -107,7 +175,7 @@
       </div>
       <img src="./assets/gift.png" alt="Bonus Icon" class="bonus-img">
       </div> 
-      <button class="btn-outline" style="border-color:#fed9a6;">Top-up Now <span>→</span></button>
+      <a href="./deposit.html" class="btn-outline" style="border-color:#fed9a6; text-decoration: none;">Top-up Now <span>→</span></a>
     </div>
     <!-- Refer & Earn -->
     <div class="bonus-card">
@@ -118,7 +186,8 @@
       </div>
       <img src="./assets/refer.png" alt="Bonus Icon" class="bonus-img">
       </div> 
-      <button class="btn-outline" style="border-color:rgba(108,63,197,0.25);">Invite Now <span>→</span></button>
+      <button class="btn-outline" style="border-color:rgba(108,63,197,0.25);" id="openReferralPopup">Invite Now <span>→</span></button>
+     
     </div>
   </div>
 
@@ -202,6 +271,88 @@
   });
 
 })();
+
+/* ========================= */
+/* REFERRAL POPUP */
+/* ========================= */
+
+const referralPopup =
+document.getElementById("referralPopup");
+
+const openReferralPopup =
+document.getElementById("openReferralPopup");
+
+const closeReferralPopup =
+document.getElementById("closeReferralPopup");
+
+/* OPEN */
+
+openReferralPopup.addEventListener(
+  "click",
+  function(){
+
+    referralPopup.classList.add("active");
+
+  }
+);
+
+/* CLOSE BUTTON */
+
+closeReferralPopup.addEventListener(
+  "click",
+  function(){
+
+    referralPopup.classList.remove("active");
+
+  }
+);
+
+/* CLOSE OUTSIDE */
+
+referralPopup.addEventListener(
+  "click",
+  function(e){
+
+    if(e.target === referralPopup){
+
+      referralPopup.classList.remove("active");
+
+    }
+
+  }
+);
+
+document
+.getElementById("copyReferralLinkBtn")
+.addEventListener("click", async function(){
+
+  const text =
+  document
+  .getElementById("referralLinkText")
+  .innerText;
+
+  await navigator.clipboard.writeText(text);
+
+  /* CHANGE BUTTON */
+
+  this.innerHTML =
+  '<i class="fa-solid fa-check"></i> Copied';
+
+  this.classList.add("copied");
+
+  /* RESET */
+
+  setTimeout(() => {
+
+    this.innerHTML =
+    '<i class="fa-regular fa-copy"></i> Copy';
+
+    this.classList.remove("copied");
+
+  }, 1800);
+
+});
+
 </script>
 
 </body>

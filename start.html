@@ -21,8 +21,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 }
 
 :root{
-  --orange:#ff9800;
-  --orange-dark:#ff6b00;
+  --orange: #ff5e0b;
+--orange-dark: #E07A00;
   --green:#09d300;
   --text:#101531;
   --muted:#6b7280;
@@ -152,8 +152,8 @@ body{
 .tab.active{
   background:linear-gradient(
     180deg,
-    #ffbf1f,
-    #ff7b00
+    #E07A00,
+    #ff5e0b
   );
   color:#fff;
 }
@@ -173,8 +173,8 @@ body{
 .match-header{
   background:linear-gradient(
     180deg,
-    #ffbf1f,
-    #ff7b00
+    #E07A00,
+    #ff5e0b
   );
   color:#fff;
   text-align:center;
@@ -363,8 +363,8 @@ body{
   }
 
   .match-header{
-    font-size:11px;
-    padding:8px 6px;
+    font-size:13px;
+    padding:15px 6px;
   }
 
   .match-body{
@@ -386,7 +386,7 @@ body{
 
   .prize-box{
     width:68px;
-    height:36px;
+    height:42px;
     border-radius:12px;
     font-size:15px;
   }
@@ -406,7 +406,7 @@ body{
 
   .entry-btn{
     width:68px;
-    height:36px;
+    height:42px;
     border-radius:12px;
     font-size:15px;
   }
@@ -424,9 +424,345 @@ body{
   }
 
 }
+/* ========================= */
+/* SETTINGS POPUP */
+/* ========================= */
+
+.settings-overlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.45);
+
+  backdrop-filter:blur(4px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:18px;
+
+  z-index:9999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.25s;
+}
+
+.settings-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+/* POPUP */
+
+.settings-popup{
+  width:100%;
+  max-width:360px;
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:24px 18px 20px;
+
+  position:relative;
+
+  animation:popupScale .22s ease;
+}
+
+/* CLOSE */
+
+.settings-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+
+  width:38px;
+  height:38px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#fff6ef;
+
+  color:#ff7a00;
+
+  font-size:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+}
+
+/* TITLE */
+
+.settings-popup h2{
+  text-align:center;
+
+  font-size:26px;
+  font-weight:700;
+
+  color:#08103f;
+
+  margin-bottom:10px;
+}
+
+/* DIVIDER */
+
+.settings-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
+
+  margin-bottom:22px;
+}
+
+.settings-divider::before,
+.settings-divider::after{
+  content:'';
+
+  width:50px;
+  height:1px;
+
+  background:#ffd0a4;
+}
+
+.settings-divider span{
+  color:#ff8c00;
+  font-size:10px;
+}
+
+/* ITEM */
+
+.settings-item{
+  height:84px;
+
+  border:1px solid #f1efee;
+
+  border-radius:20px;
+
+  padding:0 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:14px;
+}
+
+.settings-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.settings-icon{
+  color:#ff7a00;
+  font-size:30px;
+}
+
+.settings-label{
+  font-size:18px;
+  font-weight:500;
+
+  color:#101531;
+}
+
+/* SWITCH */
+
+.switch{
+  position:relative;
+  display:inline-block;
+
+  width:70px;
+  height:38px;
+}
+
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+
+  background:#ddd;
+
+  border-radius:999px;
+
+  transition:.3s;
+
+  cursor:pointer;
+}
+
+.slider::before{
+  content:'';
+
+  position:absolute;
+
+  width:30px;
+  height:30px;
+
+  left:4px;
+  top:4px;
+
+  background:#fff;
+
+  border-radius:50%;
+
+  transition:.3s;
+}
+
+.switch input:checked + .slider{
+  background:linear-gradient(
+    135deg,
+    #ff9800,
+    #ff5e00
+  );
+}
+
+.switch input:checked + .slider::before{
+  transform:translateX(32px);
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .settings-popup{
+    border-radius:22px;
+    padding:22px 16px 18px;
+  }
+
+  .settings-popup h2{
+    font-size:22px;
+  }
+
+  .settings-item{
+    height:72px;
+    border-radius:16px;
+    padding:0 14px;
+  }
+
+  .settings-icon{
+    font-size:24px;
+  }
+
+  .settings-label{
+    font-size:15px;
+  }
+
+  .switch{
+    width:62px;
+    height:34px;
+  }
+
+  .slider::before{
+    width:26px;
+    height:26px;
+  }
+
+  .switch input:checked + .slider::before{
+    transform:translateX(28px);
+  }
+
+}
 </style>
 </head>
+<!-- ========================= -->
+<!-- SETTINGS POPUP -->
+<!-- ========================= -->
 
+<div class="settings-overlay" id="settingsPopup">
+
+  <div class="settings-popup">
+
+    <!-- CLOSE -->
+
+    <button class="settings-close" id="closeSettingsPopup">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- TITLE -->
+
+    <h2>
+      Settings
+    </h2>
+
+    <!-- DIVIDER -->
+
+    <div class="settings-divider">
+      <span>◆</span>
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="settings-item">
+
+      <div class="settings-left">
+
+        <div class="settings-icon">
+          <i class="fa-solid fa-volume-high"></i>
+        </div>
+
+        <div class="settings-label">
+          Sound
+        </div>
+
+      </div>
+
+      <!-- TOGGLE -->
+
+      <label class="switch">
+
+        <input type="checkbox" checked>
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="settings-item">
+
+      <div class="settings-left">
+
+        <div class="settings-icon">
+          <i class="fa-solid fa-music"></i>
+        </div>
+
+        <div class="settings-label">
+          Music
+        </div>
+
+      </div>
+
+      <!-- TOGGLE -->
+
+      <label class="switch">
+
+        <input type="checkbox" checked>
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+</div>
 <body>
 
 <!-- TOPBAR -->
@@ -445,7 +781,7 @@ body{
     </div>
 </a>
 
-  <div class="icon-btn" style="margin-right: 10px;">
+  <div id="openSettingsPopup" class="icon-btn" style="margin-right: 10px;">
     <i class="fa-solid fa-gear"></i>
   </div>
 
@@ -660,4 +996,70 @@ body{
 
 </div>
 </body>
+<script>
+
+/* ========================= */
+/* SETTINGS POPUP */
+/* ========================= */
+
+const settingsPopup =
+document.getElementById("settingsPopup");
+
+document
+.getElementById("openSettingsPopup")
+.addEventListener("click", function(){
+
+  settingsPopup.classList.add("active");
+
+});
+
+/* CLOSE BUTTON */
+
+document
+.getElementById("closeSettingsPopup")
+.addEventListener("click", function(){
+
+  settingsPopup.classList.remove("active");
+
+});
+
+/* CLOSE OUTSIDE */
+
+settingsPopup.addEventListener("click", function(e){
+
+  if(e.target === settingsPopup){
+
+    settingsPopup.classList.remove("active");
+
+  }
+
+});
+
+/* ========================= */
+/* GAME TABS */
+/* ========================= */
+
+const tabs =
+document.querySelectorAll(".tab");
+
+tabs.forEach(function(tab){
+
+  tab.addEventListener("click", function(){
+
+    /* REMOVE ACTIVE */
+
+    tabs.forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+    /* ADD ACTIVE */
+
+    this.classList.add("active");
+
+  });
+
+});
+</script>
 </html>

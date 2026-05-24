@@ -624,6 +624,243 @@ body{
   }
 
 }
+
+/* ========================= */
+/* REFERRAL POPUP */
+/* ========================= */
+
+.referral-overlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.45);
+
+  backdrop-filter:blur(4px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:18px;
+
+  z-index:9999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.3s;
+}
+
+/* SHOW */
+
+.referral-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+/* POPUP */
+
+.referral-popup{
+  width:100%;
+  max-width:360px;
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:26px 20px 22px;
+
+  position:relative;
+
+  animation:popupShow .25s ease;
+}
+
+/* CLOSE */
+
+.popup-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  background:#fff6ef;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#ff7a00;
+
+  font-size:18px;
+
+  cursor:pointer;
+}
+
+/* GIFT */
+
+.gift-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  margin-bottom:18px;
+}
+
+.gift-circle{
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+
+  background:#fff4ea;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:42px;
+}
+
+.gift-side{
+  color:#f4b000;
+  font-size:24px;
+}
+
+/* TITLE */
+
+.referral-popup h2{
+  text-align:center;
+
+  font-size:24px;
+  font-weight:700;
+
+  color:#08103f;
+
+  margin-bottom:10px;
+}
+
+/* TEXT */
+
+.referral-popup p{
+  text-align:center;
+
+  color:#6f748c;
+
+  font-size:15px;
+  line-height:1.7;
+
+  margin-bottom:22px;
+}
+
+/* LINK BOX */
+
+.referral-box{
+  border:1px solid #f5dac4;
+
+  border-radius:18px;
+
+  background:#fff8f2;
+
+  padding:12px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.referral-link{
+  flex:1;
+
+  font-size:14px;
+  color:#1c2245;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* COPY BUTTON */
+
+.copy-ref-btn{
+  height:48px;
+
+  border:none;
+
+  padding:0 18px;
+
+  border-radius:14px;
+
+  background:linear-gradient(
+    135deg,
+    #ff9800,
+    #ff5e00
+  );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  cursor:pointer;
+
+  flex-shrink:0;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .referral-popup{
+    border-radius:22px;
+    padding:22px 16px 18px;
+  }
+
+  .popup-close{
+    width:34px;
+    height:34px;
+    font-size:15px;
+  }
+
+  .gift-circle{
+    width:72px;
+    height:72px;
+    font-size:34px;
+  }
+
+  .referral-popup h2{
+    font-size:20px;
+  }
+
+  .referral-popup p{
+    font-size:13px;
+    margin-bottom:18px;
+  }
+
+  .referral-box{
+    padding:10px;
+    border-radius:14px;
+  }
+
+  .referral-link{
+    font-size:12px;
+  }
+
+  .copy-ref-btn{
+    height:42px;
+    padding:0 14px;
+    border-radius:12px;
+    font-size:13px;
+  }
+
+}
   </style>
 </head>
 
@@ -701,10 +938,10 @@ body{
         Withdraw
       </button>
 
-      <button class="btn btn-fill">
+      <a class="btn btn-fill" href="./deposit.html" style="text-decoration: none; color:white;">
         <i class="fa-solid fa-download"></i>
         Deposit
-      </button>
+      </a>
 
     </div>
 
@@ -815,10 +1052,84 @@ body{
       <span>0</span>
     </div>
 
-    <button class="refer-btn">
-      Refer Now
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
+    <!-- REFER BUTTON -->
+
+<button class="refer-btn" id="openReferralPopup">
+  Refer Now
+</button>
+
+<!-- ========================= -->
+<!-- REFERRAL POPUP -->
+<!-- ========================= -->
+
+<div class="referral-overlay" id="referralPopup">
+
+  <div class="referral-popup">
+
+    <!-- CLOSE -->
+
+    <div class="popup-close" id="closeReferralPopup">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+
+    <!-- TOP ICON -->
+
+    <div class="gift-wrap">
+
+      <div class="gift-side left">
+        ✦
+      </div>
+
+      <div class="gift-circle">
+        🎁
+      </div>
+
+      <div class="gift-side right">
+        ✦
+      </div>
+
+    </div>
+
+    <!-- TITLE -->
+
+    <h2>
+      Your Referral Link
+    </h2>
+
+    <!-- DESC -->
+
+    <p>
+      Share your link with friends and earn
+      rewards when they join!
+    </p>
+
+    <!-- LINK BOX -->
+
+    <div class="referral-box">
+
+      <div
+      class="referral-link"
+      id="referralText">
+
+        https://dotscout.com/ref/18536712
+
+      </div>
+
+      <button
+      class="copy-ref-btn"
+      id="copyReferralBtn">
+
+        <i class="fa-regular fa-copy"></i>
+
+        Copy
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
   </div>
 
@@ -914,6 +1225,86 @@ document.querySelectorAll(".popup-overlay").forEach(function(overlay){
   });
 
 });
+
+
+/* ========================= */
+/* REFERRAL POPUP */
+/* ========================= */
+
+const referralPopup =
+document.getElementById("referralPopup");
+
+const openReferralPopup =
+document.getElementById("openReferralPopup");
+
+const closeReferralPopup =
+document.getElementById("closeReferralPopup");
+
+/* OPEN */
+
+openReferralPopup.addEventListener(
+  "click",
+  function(){
+
+    referralPopup.classList.add("active");
+
+  }
+);
+
+/* CLOSE BUTTON */
+
+closeReferralPopup.addEventListener(
+  "click",
+  function(){
+
+    referralPopup.classList.remove("active");
+
+  }
+);
+
+/* CLOSE OUTSIDE */
+
+referralPopup.addEventListener(
+  "click",
+  function(e){
+
+    if(e.target === referralPopup){
+
+      referralPopup.classList.remove("active");
+
+    }
+
+  }
+);
+
+/* COPY */
+
+const copyReferralBtn =
+document.getElementById("copyReferralBtn");
+
+const referralText =
+document.getElementById("referralText");
+
+copyReferralBtn.addEventListener(
+  "click",
+  async function(){
+
+    await navigator.clipboard.writeText(
+      referralText.innerText
+    );
+
+    copyReferralBtn.innerHTML =
+    '<i class="fa-solid fa-check"></i> Copied';
+
+    setTimeout(function(){
+
+      copyReferralBtn.innerHTML =
+      '<i class="fa-regular fa-copy"></i> Copy';
+
+    }, 1800);
+
+  }
+);
 
 </script>
 </body>
