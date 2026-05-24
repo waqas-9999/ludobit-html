@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>LudoBit Start Game</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --orange:#ff9800;
+  --orange-dark:#ff6b00;
+  --green:#09d300;
+  --text:#101531;
+  --muted:#6b7280;
+  --card:#ffffff;
+  --bg:#f7f7f7;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:10px 12px 20px;
+}
+
+/* TOPBAR */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.icon-btn{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--orange-dark);
+  font-size:22px;
+}
+
+.wallet{
+  height:48px;
+  background:#fff;
+  border-radius:18px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+
+.wallet img{
+  width:28px;
+}
+
+.wallet-balance{
+  font-size:18px;
+  font-weight:700;
+}
+
+.wallet-add{
+  color:var(--orange-dark);
+  font-size:24px;
+  margin-left:4px;
+}
+
+/* LOGO */
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  margin-bottom:18px;
+}
+
+.logo{
+  width:220px;
+}
+
+.signal{
+  position:absolute;
+  right:0;
+  top:10px;
+  text-align:center;
+}
+
+.signal i{
+  font-size:42px;
+  color:#2ba7ff;
+}
+
+.signal p{
+  color:#0ab800;
+  font-size:14px;
+  font-weight:700;
+}
+
+/* GAME CONTAINER */
+
+.game-box{
+  background:#fff;
+  border-radius:28px;
+  padding:16px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.05);
+}
+
+/* TABS */
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.tab{
+  flex:1;
+  height:54px;
+  border-radius:16px;
+  border:none;
+  background:#fff;
+  color:#1d2440;
+  font-size:17px;
+  font-weight:700;
+  box-shadow:0 3px 10px rgba(0,0,0,0.06);
+}
+
+.tab.active{
+  background:linear-gradient(
+    180deg,
+    #ffbf1f,
+    #ff7b00
+  );
+  color:#fff;
+}
+
+/* MATCH CARD */
+
+.match-card{
+  background:#fff;
+  border-radius:24px;
+  overflow:hidden;
+  margin-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,0.07);
+}
+
+/* CARD HEADER */
+
+.match-header{
+  background:linear-gradient(
+    180deg,
+    #ffbf1f,
+    #ff7b00
+  );
+  color:#fff;
+  text-align:center;
+  padding:14px 10px;
+  font-size:16px;
+  font-weight:800;
+}
+
+/* BODY */
+
+.match-body{
+  padding:18px 16px 16px;
+}
+
+.match-grid{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:12px;
+}
+
+/* PRIZE */
+
+.label{
+  font-size:14px;
+  font-weight:500;
+  margin-bottom:10px;
+}
+
+.prize-box{
+  width:110px;
+  height:54px;
+  border-radius:18px;
+  background:#f8ede4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  font-weight:700;
+}
+
+/* PLAYER */
+
+.player-box{
+  text-align:center;
+}
+
+.player-box i{
+  color:#ff9800;
+  font-size:34px;
+  margin-bottom:6px;
+}
+
+.player-count{
+  font-size:18px;
+  font-weight:700;
+}
+
+/* ENTRY */
+
+.entry-box{
+  text-align:right;
+}
+
+.entry-btn{
+  width:110px;
+  height:54px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(
+    180deg,
+    #00db00,
+    #00b000
+  );
+  color:#fff;
+  font-size:24px;
+  font-weight:800;
+  box-shadow:0 6px 14px rgba(0,190,0,.25);
+}
+
+/* FOOTER */
+
+.match-footer{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+}
+
+.time-pill{
+  background:#fff5eb;
+  color:#ff9800;
+  padding:8px 18px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:700;
+  font-style:italic;
+}
+
+/* EXTRA SMALL MOBILE UI */
+
+@media (max-width:480px){
+
+  body{
+    padding:6px;
+  }
+
+  /* TOPBAR */
+
+  .topbar{
+    margin-bottom:10px;
+  }
+
+  .icon-btn{
+    width:36px;
+    height:36px;
+    font-size:15px;
+    border-radius:12px;
+  }
+
+  .wallet{
+    height:36px;
+    padding:0 10px;
+    gap:6px;
+    border-radius:12px;
+  }
+
+  .wallet img{
+    width:18px;
+  }
+
+  .wallet-balance{
+    font-size:12px;
+  }
+
+  .wallet-add{
+    font-size:14px;
+  }
+
+  /* LOGO */
+
+  .logo-wrap{
+    margin-bottom:10px;
+  }
+
+  .logo{
+    width:140px;
+  }
+
+  .signal{
+    top:0;
+  }
+
+  .signal i{
+    font-size:24px;
+  }
+
+  .signal p{
+    font-size:9px;
+  }
+
+  /* GAME BOX */
+
+  .game-box{
+    padding:10px;
+    border-radius:18px;
+  }
+
+  /* TABS */
+
+  .tabs{
+    gap:6px;
+    margin-bottom:10px;
+  }
+
+  .tab{
+    height:36px;
+    font-size:11px;
+    border-radius:10px;
+  }
+
+  /* MATCH CARD */
+
+  .match-card{
+    border-radius:14px;
+    margin-bottom:10px;
+  }
+
+  .match-header{
+    font-size:11px;
+    padding:8px 6px;
+  }
+
+  .match-body{
+    padding:10px;
+  }
+
+  .match-grid{
+    gap:6px;
+  }
+
+  /* LABEL */
+
+  .label{
+    font-size:9px;
+    margin-bottom:4px;
+  }
+
+  /* PRIZE */
+
+  .prize-box{
+    width:68px;
+    height:36px;
+    border-radius:12px;
+    font-size:15px;
+  }
+
+  /* PLAYER */
+
+  .player-box i{
+    font-size:18px;
+    margin-bottom:2px;
+  }
+
+  .player-count{
+    font-size:11px;
+  }
+
+  /* ENTRY */
+
+  .entry-btn{
+    width:68px;
+    height:36px;
+    border-radius:12px;
+    font-size:15px;
+  }
+
+  /* FOOTER */
+
+  .match-footer{
+    margin-top:8px;
+  }
+
+  .time-pill{
+    padding:5px 12px;
+    font-size:9px;
+    border-radius:999px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+  <a style="text-decoration: none;" href="./index.html" class="icon-btn">
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+
+  <a style="text-decoration: none; color:black" href="./profile.html" class="wallet">
+    <i class="fa-solid fa-wallet"></i>
+    <div class="wallet-balance">$37.00000</div>
+    <div class="wallet-add">
+      <i class="fa-solid fa-plus"></i>
+    </div>
+</a>
+
+  <div class="icon-btn">
+    <i class="fa-solid fa-gear"></i>
+  </div>
+
+</div>
+
+<!-- LOGO -->
+
+<div class="logo-wrap">
+
+  <img src="./assets/Ludo-Game.png" class="logo">
+
+  <div class="signal">
+    <i class="fa-solid fa-wifi"></i>
+    <p>81 ms</p>
+  </div>
+
+</div>
+
+<!-- GAME -->
+
+<div class="game-box">
+
+  <!-- TABS -->
+
+  <div class="tabs">
+
+    <button class="tab active">
+      Pools
+    </button>
+
+    <button class="tab">
+      2 Player
+    </button>
+
+    <button class="tab">
+      4 Player
+    </button>
+
+  </div>
+
+  <!-- MATCH 1 -->
+
+  <div class="match-card">
+
+    <div class="match-header">
+      2PLAYER &nbsp;&nbsp; 1Winner
+    </div>
+
+    <div class="match-body">
+
+      <div class="match-grid">
+
+        <!-- LEFT -->
+
+        <div>
+
+          <div class="label">
+            Prize Pool
+          </div>
+
+          <div class="prize-box">
+            $0
+          </div>
+
+        </div>
+
+        <!-- CENTER -->
+
+        <div class="player-box">
+
+          <i class="fa-solid fa-users"></i>
+
+          <div class="player-count">
+            212
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="entry-box">
+
+          <div class="label">
+            Entry
+          </div>
+
+          <button class="entry-btn">
+            FREE
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="match-footer">
+
+        <div class="time-pill">
+          8 Min Ludo
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MATCH 2 -->
+
+  <div class="match-card">
+
+    <div class="match-header">
+      2PLAYER &nbsp;&nbsp; 1Winner
+    </div>
+
+    <div class="match-body">
+
+      <div class="match-grid">
+
+        <div>
+          <div class="label">Prize Pool</div>
+
+          <div class="prize-box">
+            $1.7
+          </div>
+        </div>
+
+        <div class="player-box">
+          <i class="fa-solid fa-users"></i>
+
+          <div class="player-count">
+            5
+          </div>
+        </div>
+
+        <div class="entry-box">
+
+          <div class="label">Entry</div>
+
+          <button class="entry-btn">
+            $1
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="match-footer">
+        <div class="time-pill">
+          8 Min Ludo
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MATCH 3 -->
+
+  <div class="match-card">
+
+    <div class="match-header">
+      2PLAYER &nbsp;&nbsp; 1Winner
+    </div>
+
+    <div class="match-body">
+
+      <div class="match-grid">
+
+        <div>
+
+          <div class="label">
+            Prize Pool
+          </div>
+
+          <div class="prize-box">
+            $8.5
+          </div>
+
+        </div>
+
+        <div class="player-box">
+
+          <i class="fa-solid fa-users"></i>
+
+          <div class="player-count">
+            2
+          </div>
+
+        </div>
+
+        <div class="entry-box">
+
+          <div class="label">
+            Entry
+          </div>
+
+          <button class="entry-btn">
+            $5
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="match-footer">
+
+        <div class="time-pill">
+          8 Min Ludo
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
