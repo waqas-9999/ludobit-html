@@ -23,6 +23,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 :root{
   --orange: #ff5e0b;
 --orange-dark: #E07A00;
+--orange-lightt: #FFB347;
   --green:#09d300;
   --text:#101531;
   --muted:#6b7280;
@@ -339,6 +340,8 @@ body{
 
   .game-box{
     padding:10px;
+    padding-top:22px;
+    padding-bottom:22px;
     border-radius:18px;
   }
 
@@ -346,11 +349,11 @@ body{
 
   .tabs{
     gap:6px;
-    margin-bottom:10px;
+    margin-bottom:22px;
   }
 
   .tab{
-    height:36px;
+    height:45px;
     font-size:11px;
     border-radius:10px;
   }
@@ -676,6 +679,164 @@ body{
   }
 
 }
+/* ========================= */
+/* MATCH SWIPER */
+/* ========================= */
+
+.match-swiper{
+  display:flex;
+  gap:14px;
+
+  overflow-x:auto;
+  overflow-y:auto;
+
+  scroll-snap-type:x mandatory;
+
+  max-height:540px;
+
+  padding-bottom:8px;
+  padding-right:4px;
+
+  scrollbar-width:none;
+}
+
+/* HIDE SCROLLBAR */
+
+.match-swiper::-webkit-scrollbar{
+  display:none;
+}
+
+/* SLIDE */
+
+.match-slide{
+  min-width:88%;
+  flex-shrink:0;
+
+  scroll-snap-align:center;
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .match-swiper{
+    max-height:420px;
+  }
+
+  .match-slide{
+    min-width:92%;
+  }
+
+}
+
+.match-swiper{
+  display:flex;
+  flex-direction:column;
+
+  gap:14px;
+
+  overflow-y:auto;
+  max-height:440px;
+
+  padding-right:4px;
+
+  scrollbar-width:none;
+}
+
+.match-swiper::-webkit-scrollbar{
+  display:none;
+}
+.btn-style {
+    display: block;
+    background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 50%, var(--orange-dark) 100%);
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(247, 148, 29, 0.45);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-style::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+
+    100% {
+      left: 200%;
+    }
+  }
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 2vw, 10px);
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .wallet-pill {
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 1.5vw, 8px);
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 999px;
+    padding: clamp(4px, 1.2vw, 6px) clamp(5px, 1.5vw, 8px) clamp(4px, 1.2vw, 6px) clamp(8px, 2.5vw, 12px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    min-width: 0;
+  }
+
+  .wallet-pill i {
+    font-size: clamp(13px, 3.8vw, 16px);
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  .wallet-balance {
+    font-size: clamp(11px, 3.2vw, 14px);
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wallet-add {
+    width: clamp(24px, 7vw, 28px);
+    height: clamp(24px, 7vw, 28px);
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange-lightt), var(--orange));
+    color: #fff;
+    font-size: clamp(15px, 4.2vw, 18px);
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 94, 11, 0.35);
+  }
+
+  .wallet-add:active {
+    transform: scale(0.95);
+  }
+
 </style>
 </head>
 <!-- ========================= -->
@@ -773,13 +934,16 @@ body{
     <i class="fa-solid fa-arrow-left"></i>
   </a>
 
-  <a style="text-decoration: none; color:black" href="./profile.html" class="wallet">
-    <i class="fa-solid fa-wallet"></i>
-    <div class="wallet-balance">$37.00000</div>
-    <div class="wallet-add">
-      <i class="fa-solid fa-plus"></i>
+  <a style="text-decoration: none;" class="profile-wrap" href="./profile.html">
+  <div class="header-actions">
+    <div class="wallet-pill">
+      <i class="fa-solid fa-wallet"></i>
+      <span class="wallet-balance">1,250.75</span>
+      <button type="button" class="wallet-add" aria-label="Add funds">+</button>
     </div>
-</a>
+    
+  </div>
+      </a>
 
   <div id="openSettingsPopup" class="icon-btn" style="margin-right: 10px;">
     <i class="fa-solid fa-gear"></i>
@@ -804,78 +968,72 @@ body{
 
   <div class="tabs">
 
-    <button class="tab active">
+    <button class="tab active btn-style">
       Pools
     </button>
 
-    <button class="tab">
+    <button class="tab btn-style">
       2 Player
     </button>
 
-    <button class="tab">
+    <button class="tab btn-style">
       4 Player
     </button>
 
   </div>
 
-  <!-- MATCH 1 -->
+ <!-- SWIPER -->
 
-  <div class="match-card">
+<div class="match-swiper">
 
-    <div class="match-header">
-      2PLAYER &nbsp;&nbsp; 1Winner
-    </div>
+  <!-- CARD 1 -->
 
-    <div class="match-body">
+  <div class="match-slide">
 
-      <div class="match-grid">
+    <div class="match-card">
 
-        <!-- LEFT -->
-
-        <div>
-
-          <div class="label">
-            Prize Pool
-          </div>
-
-          <div class="prize-box">
-            $0
-          </div>
-
-        </div>
-
-        <!-- CENTER -->
-
-        <div class="player-box">
-
-          <i class="fa-solid fa-users"></i>
-
-          <div class="player-count">
-            212
-          </div>
-
-        </div>
-
-        <!-- RIGHT -->
-
-        <div class="entry-box">
-
-          <div class="label">
-            Entry
-          </div>
-
-          <button class="entry-btn">
-            FREE
-          </button>
-
-        </div>
-
+      <div class="match-header">
+        2PLAYER &nbsp;&nbsp; 1Winner
       </div>
 
-      <div class="match-footer">
+      <div class="match-body">
 
-        <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
-          8 Min Ludo
+        <div class="match-grid">
+
+          <div>
+            <div class="label">Prize Pool</div>
+
+            <div class="prize-box">
+              $0
+            </div>
+          </div>
+
+          <div class="player-box">
+            <i class="fa-solid fa-users"></i>
+
+            <div class="player-count">
+              212
+            </div>
+          </div>
+
+          <div class="entry-box">
+
+            <div class="label">Entry</div>
+
+            <button class="entry-btn">
+              FREE
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="match-footer">
+
+          <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
+            8 Min Ludo
+          </div>
+
         </div>
 
       </div>
@@ -884,108 +1042,54 @@ body{
 
   </div>
 
-  <!-- MATCH 2 -->
+  <!-- CARD 2 -->
 
-  <div class="match-card">
+  <div class="match-slide">
 
-    <div class="match-header">
-      2PLAYER &nbsp;&nbsp; 1Winner
-    </div>
+    <div class="match-card">
 
-    <div class="match-body">
-
-      <div class="match-grid">
-
-        <div>
-          <div class="label">Prize Pool</div>
-
-          <div class="prize-box">
-            $1.7
-          </div>
-        </div>
-
-        <div class="player-box">
-          <i class="fa-solid fa-users"></i>
-
-          <div class="player-count">
-            5
-          </div>
-        </div>
-
-        <div class="entry-box">
-
-          <div class="label">Entry</div>
-
-          <button class="entry-btn">
-            $1
-          </button>
-
-        </div>
-
+      <div class="match-header">
+        2PLAYER &nbsp;&nbsp; 1Winner
       </div>
 
-      <div class="match-footer">
-        <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
-          8 Min Ludo
-        </div>
-      </div>
+      <div class="match-body">
 
-    </div>
+        <div class="match-grid">
 
-  </div>
+          <div>
+            <div class="label">Prize Pool</div>
 
-  <!-- MATCH 3 -->
-
-  <div class="match-card">
-
-    <div class="match-header">
-      2PLAYER &nbsp;&nbsp; 1Winner
-    </div>
-
-    <div class="match-body">
-
-      <div class="match-grid">
-
-        <div>
-
-          <div class="label">
-            Prize Pool
+            <div class="prize-box">
+              $1.7
+            </div>
           </div>
 
-          <div class="prize-box">
-            $8.5
+          <div class="player-box">
+            <i class="fa-solid fa-users"></i>
+
+            <div class="player-count">
+              5
+            </div>
           </div>
 
-        </div>
+          <div class="entry-box">
 
-        <div class="player-box">
+            <div class="label">Entry</div>
 
-          <i class="fa-solid fa-users"></i>
+            <button class="entry-btn">
+              $1
+            </button>
 
-          <div class="player-count">
-            2
           </div>
 
         </div>
 
-        <div class="entry-box">
+        <div class="match-footer">
 
-          <div class="label">
-            Entry
+          <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
+            8 Min Ludo
           </div>
 
-          <button class="entry-btn">
-            $5
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="match-footer">
-
-        <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
-          8 Min Ludo
         </div>
 
       </div>
@@ -993,6 +1097,64 @@ body{
     </div>
 
   </div>
+
+  <!-- CARD 3 -->
+
+  <div class="match-slide">
+
+    <div class="match-card">
+
+      <div class="match-header">
+        2PLAYER &nbsp;&nbsp; 1Winner
+      </div>
+
+      <div class="match-body">
+
+        <div class="match-grid">
+
+          <div>
+            <div class="label">Prize Pool</div>
+
+            <div class="prize-box">
+              $8.5
+            </div>
+          </div>
+
+          <div class="player-box">
+            <i class="fa-solid fa-users"></i>
+
+            <div class="player-count">
+              2
+            </div>
+          </div>
+
+          <div class="entry-box">
+
+            <div class="label">Entry</div>
+
+            <button class="entry-btn">
+              $5
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="match-footer">
+
+          <div class="time-pill" style="background:#e0f7e9; color:#09d300;">
+            8 Min Ludo
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 </div>
 </body>

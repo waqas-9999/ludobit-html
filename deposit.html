@@ -700,112 +700,242 @@ body{
   font-weight:500;
 }
 
-/* MOBILE */
+/* ========================= */
+/* MOBILE OPTIMIZED */
+/* ========================= */
 
 @media (max-width:480px){
 
+  body{
+    padding:6px;
+  }
+
+  /* HEADER */
+
+  .topbar{
+    margin-bottom:10px;
+  }
+
+  .page-title{
+    font-size:18px;
+  }
+
+  .icon-btn{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    font-size:14px;
+  }
+
+  /* TABS */
+
+  .deposit-tabs{
+    padding:4px;
+    border-radius:14px;
+    margin-bottom:10px;
+  }
+
+  .deposit-tab{
+    height:40px;
+    font-size:12px;
+    gap:6px;
+    border-radius:10px;
+  }
+
+  .deposit-tab i{
+    font-size:14px;
+  }
+
+  /* BONUS */
+
+  .bonus-strip{
+    height:36px;
+    font-size:10px;
+    padding:0 10px;
+    gap:6px;
+    margin-bottom:10px;
+  }
+
+  .bonus-strip i{
+    font-size:12px;
+  }
+
+  /* CARD */
+
+  .deposit-card{
+    padding:10px;
+    border-radius:14px;
+    margin-bottom:10px;
+  }
+
+  /* GRID */
+
+  .deposit-grid{
+    gap:8px;
+    margin-bottom:10px;
+  }
+
+  /* DROPDOWN */
+
   .dropdown-selected{
-    height:60px;
-    border-radius:14px;
-    padding:0 14px;
-  }
-
-  .dropdown-options{
-    top:68px;
-    border-radius:14px;
-  }
-
-  .dropdown-option{
-    height:50px;
+    height:48px;
     border-radius:12px;
-  }
-
-  .coin-img{
-    width:22px;
-    height:22px;
+    padding:0 10px;
   }
 
   .dropdown-selected span{
-    font-size:13px;
+    font-size:11px;
+  }
+
+  .dropdown-selected i{
+    font-size:11px;
+  }
+
+  .selected-left{
+    gap:8px;
+  }
+
+  .coin-img{
+    width:18px;
+    height:18px;
+  }
+
+  /* OPTIONS */
+
+  .dropdown-options{
+    top:54px;
+    padding:5px;
+    border-radius:12px;
+  }
+
+  .dropdown-option{
+    height:40px;
+    border-radius:10px;
+    padding:0 10px;
+    gap:8px;
   }
 
   .dropdown-option span{
-    font-size:12px;
+    font-size:11px;
   }
 
-}
+  /* INPUT */
 
-/* COPY BUTTON */
+  .deposit-input{
+    height:48px;
+    border-radius:12px;
+    padding:0 12px;
+    font-size:12px;
+    margin-bottom:10px;
+  }
 
-.copy-btn{
-  color:var(--orange-dark);
-  font-size:24px;
-  cursor:pointer;
-  transition:.2s;
-}
+  /* BUTTON */
 
-.copy-btn:active{
-  transform:scale(.92);
-}
+  .deposit-btn{
+    height:46px;
+    border-radius:12px;
+    font-size:13px;
+    margin-bottom:10px;
+  }
 
-/* TOAST */
+  /* INFO */
 
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:24px;
-  transform:translateX(-50%) translateY(100px);
+  .info-row{
+    gap:6px;
+    font-size:10px;
+    line-height:1.4;
+  }
 
-  background:#111827;
-  color:#fff;
+  .info-row i{
+    font-size:12px;
+    margin-top:1px;
+  }
 
-  height:52px;
-  padding:0 18px;
+  /* ADDRESS */
 
-  border-radius:14px;
+  .address-title{
+    font-size:12px;
+    margin-bottom:10px;
+  }
 
-  display:flex;
-  align-items:center;
-  gap:10px;
+  .address-box{
+    gap:8px;
+    margin-bottom:10px;
+  }
 
-  font-size:14px;
-  font-weight:500;
+  .qr-box{
+    width:74px;
+    height:74px;
+    border-radius:10px;
+    padding:6px;
+  }
 
-  opacity:0;
-  visibility:hidden;
+  .address-copy{
+    padding:8px;
+    border-radius:10px;
+    gap:6px;
+  }
 
-  transition:.35s;
+  .address-text{
+    font-size:10px;
+    line-height:1.4;
+  }
 
-  z-index:9999;
-}
+  .copy-btn{
+    font-size:14px;
+  }
 
-.toast i{
-  color:#00d26a;
-  font-size:18px;
-}
+  /* WARNING */
 
-/* SHOW */
+  .warning-box{
+    padding:10px;
+    border-radius:12px;
+    gap:8px;
+  }
 
-.toast.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateX(-50%) translateY(0);
-}
+  .warning-icon{
+    width:24px;
+    height:24px;
+    font-size:11px;
+  }
 
-/* MOBILE */
+  .warning-text{
+    font-size:10px;
+    line-height:1.5;
+  }
 
-@media (max-width:480px){
+  /* SECURITY */
+
+  .security-box{
+    padding:10px;
+    border-radius:14px;
+    gap:8px;
+  }
+
+  .security-icon{
+    width:32px;
+    height:32px;
+    font-size:14px;
+  }
+
+  .security-text{
+    font-size:10px;
+    line-height:1.5;
+  }
+
+  /* TOAST */
 
   .toast{
-    height:44px;
-    padding:0 14px;
-    font-size:12px;
-    border-radius:12px;
-    bottom:18px;
+    height:36px;
+    padding:0 10px;
+    border-radius:10px;
+    font-size:10px;
+    gap:6px;
+    bottom:10px;
   }
 
   .toast i{
-    font-size:15px;
+    font-size:12px;
   }
 
 }
@@ -818,9 +948,9 @@ body{
 
 <div class="topbar">
 
-  <div class="icon-btn">
+  <a style="text-decoration: none;" href="profile.html" class="icon-btn">
     <i class="fa-solid fa-arrow-left"></i>
-  </div>
+  </a>
 
   <div class="page-title">
     Deposit
@@ -951,25 +1081,98 @@ body{
 
 <!-- NETWORK -->
 
-<div>
+<!-- NETWORK DROPDOWN -->
 
-  <div class="select-wrapper">
+<div class="custom-dropdown" id="networkDropdown">
 
-    <select class="custom-select" id="networkSelect">
+  <!-- SELECTED -->
 
-      <option value="">Select Network</option>
+  <div class="dropdown-selected">
 
-      <option value="TRC20">Tron (TRC20)</option>
+    <div class="selected-left">
 
-      <option value="ERC20">Ethereum (ERC20)</option>
+      <img
+      src="https://cryptologos.cc/logos/tron-trx-logo.png?v=029"
+      class="coin-img"
+      id="selectedNetworkImg">
 
-      <option value="BEP20">BNB Smart Chain (BEP20)</option>
+      <span id="selectedNetworkText">
+        Tron (TRC20)
+      </span>
 
-      <option value="SOL">Solana</option>
-
-    </select>
+    </div>
 
     <i class="fa-solid fa-chevron-down"></i>
+
+  </div>
+
+  <!-- OPTIONS -->
+
+  <div class="dropdown-options">
+
+    <!-- TRC20 -->
+
+    <div
+    class="dropdown-option active"
+    data-network="TRC20"
+    data-name="Tron (TRC20)"
+    data-img="https://cryptologos.cc/logos/tron-trx-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/tron-trx-logo.png?v=029"
+      class="coin-img">
+
+      <span>Tron (TRC20)</span>
+
+    </div>
+
+    <!-- ERC20 -->
+
+    <div
+    class="dropdown-option"
+    data-network="ERC20"
+    data-name="Ethereum (ERC20)"
+    data-img="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+      class="coin-img">
+
+      <span>Ethereum (ERC20)</span>
+
+    </div>
+
+    <!-- BEP20 -->
+
+    <div
+    class="dropdown-option"
+    data-network="BEP20"
+    data-name="BNB Smart Chain"
+    data-img="https://cryptologos.cc/logos/bnb-bnb-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/bnb-bnb-logo.png?v=029"
+      class="coin-img">
+
+      <span>BNB Smart Chain</span>
+
+    </div>
+
+    <!-- SOL -->
+
+    <div
+    class="dropdown-option"
+    data-network="SOL"
+    data-name="Solana"
+    data-img="https://cryptologos.cc/logos/solana-sol-logo.png?v=029">
+
+      <img
+      src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+      class="coin-img">
+
+      <span>Solana</span>
+
+    </div>
 
   </div>
 
@@ -1270,6 +1473,80 @@ copyBtn.addEventListener("click", async function(){
   }catch(err){
 
     console.log("Copy failed");
+
+  }
+
+});
+
+/* ========================= */
+/* NETWORK DROPDOWN */
+/* ========================= */
+
+const networkDropdown =
+document.getElementById("networkDropdown");
+
+const networkSelected =
+networkDropdown.querySelector(".dropdown-selected");
+
+const networkOptions =
+networkDropdown.querySelectorAll(".dropdown-option");
+
+const selectedNetworkImg =
+document.getElementById("selectedNetworkImg");
+
+const selectedNetworkText =
+document.getElementById("selectedNetworkText");
+
+/* OPEN */
+
+networkSelected.addEventListener("click", function(){
+
+  networkDropdown.classList.toggle("active");
+
+});
+
+/* SELECT */
+
+networkOptions.forEach(function(option){
+
+  option.addEventListener("click", function(){
+
+    const img =
+    this.getAttribute("data-img");
+
+    const name =
+    this.getAttribute("data-name");
+
+    selectedNetwork =
+    this.getAttribute("data-network");
+
+    selectedNetworkImg.src = img;
+
+    selectedNetworkText.innerText = name;
+
+    networkOptions.forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+    this.classList.add("active");
+
+    networkDropdown.classList.remove("active");
+
+    checkForm();
+
+  });
+
+});
+
+/* CLOSE OUTSIDE */
+
+window.addEventListener("click", function(e){
+
+  if(!networkDropdown.contains(e.target)){
+
+    networkDropdown.classList.remove("active");
 
   }
 

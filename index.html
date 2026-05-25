@@ -353,6 +353,26 @@ document
 
 });
 
+/* ========================= */
+/* STICKY HEADER */
+/* ========================= */
+
+const header =
+document.querySelector(".app-header");
+
+window.addEventListener("scroll", function(){
+
+  if(window.scrollY > 6){
+
+    header.classList.add("scrolled");
+
+  }else{
+
+    header.classList.remove("scrolled");
+
+  }
+
+});
 </script>
 
 </body>
