@@ -35,7 +35,7 @@
     --font-btn: clamp(13px, 3.8vw, 16px);
     --font-trust: clamp(7px, 2.1vw, 9px);
     --font-trust-bold: clamp(8px, 2.3vw, 10px);
-    --hero-h: clamp(160px, 40vw, 240px);
+    --hero-h: clamp(160px, 50vw, 240px);
     --btn-width: clamp(160px, 60%, 240px);
   }
 
@@ -251,7 +251,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: clamp(12px, 4vw, 20px);
   }
 
   .logo-wrap {

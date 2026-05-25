@@ -1,970 +1,1105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Deposit History</title>
+    <title>Deposit History</title>
 
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-rel="stylesheet"
-/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+        :root {
+            --orange: #ff9800;
+            --orange-dark: #ff5e00;
+            --green: #09c64d;
+            --red: #ff2e2e;
 
-:root{
-  --orange:#ff9800;
-  --orange-dark:#ff5e00;
-  --green:#09c64d;
-  --red:#ff2e2e;
+            --text: #0b1140;
+            --muted: #7b8198;
 
-  --text:#0b1140;
-  --muted:#7b8198;
+            --bg: #f7f7f7;
+        }
 
-  --bg:#f7f7f7;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:var(--bg);
-  color:var(--text);
+            max-width: 480px;
+            margin: 0 auto;
 
-  max-width:480px;
-  margin:0 auto;
+            min-height: 100vh;
 
-  min-height:100vh;
+            padding: 8px;
+        }
 
-  padding:8px;
-}
+        /* ========================= */
+        /* HEADER */
+        /* ========================= */
 
+        .topbar {
+
+            position: sticky;
+            top: 0;
+
+            z-index: 999;
+
+            background: rgba(247, 247, 247, .92);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            padding-bottom: 8px;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 6px;
+        }
+
+        .back-btn {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--orange-dark);
+
+            font-size: 16px;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* DIVIDER */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+
+            width: 46px;
+            height: 1px;
+
+            background: #ffc89d;
+        }
+
+        .divider span {
+            color: var(--orange-dark);
+            font-size: 8px;
+        }
+
+        /* ========================= */
+        /* FILTERS */
+        /* ========================= */
+
+        .filters {
+            margin-top: 10px;
+
+            display: flex;
+            gap: 8px;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+
+            min-width: 70px;
+
+            background: #fff;
+
+            border-radius: 14px;
+
+            padding: 8px 6px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            gap: 4px;
+
+            border: 1px solid #f0f0f0;
+
+            flex-shrink: 0;
+        }
+
+        .filter-btn.active {
+            background: #fff4ec;
+        }
+
+        .filter-btn i {
+            font-size: 18px;
+        }
+
+        .filter-btn span {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .orange {
+            color: var(--orange-dark);
+        }
+
+        .green {
+            color: var(--green);
+        }
+
+        .purple {
+            color: #8b00ff;
+        }
+
+        .blue {
+            color: #1570ff;
+        }
+
+        /* ========================= */
+        /* HISTORY */
+        /* ========================= */
+
+        .history-list {
+            margin-top: 10px;
+        }
+
+        .history-card {
+
+            background: #fff;
+
+            border-radius: 16px;
+
+            padding: 10px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .03);
+        }
+
+        /* ICON */
+
+        .history-icon {
+
+            width: 44px;
+            height: 44px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            font-size: 20px;
+        }
+
+        .success-bg {
+            background: #ebfaef;
+            color: var(--green);
+        }
+
+        .pending-bg {
+            background: #fff4e7;
+            color: var(--orange);
+        }
+
+        .failed-bg {
+            background: #ffe9e9;
+            color: var(--red);
+        }
+
+        /* CONTENT */
+
+        .history-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .history-title {
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 2px;
+        }
+
+        .history-date {
+            font-size: 10px;
+            color: var(--muted);
+
+            margin-bottom: 3px;
+        }
+
+        .tx-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tx-id {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .copy-icon {
+            color: #7d839e;
+            font-size: 11px;
+        }
+
+        /* RIGHT */
+
+        .history-right {
+            text-align: right;
+        }
+
+        .history-amount {
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 4px;
+        }
+
+        .success-text {
+            color: var(--green);
+        }
+
+        .pending-text {
+            color: var(--orange);
+        }
+
+        .failed-text {
+            color: var(--red);
+        }
+
+        /* STATUS */
+
+        .status-pill {
+
+            height: 22px;
+
+            padding: 0 10px;
+
+            border-radius: 999px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: #ebfaef;
+            color: var(--green);
+        }
+
+        .status-pending {
+            background: #fff4e7;
+            color: var(--orange);
+        }
+
+        .status-failed {
+            background: #ffe9e9;
+            color: var(--red);
+        }
+
+        /* ARROW */
+
+        .arrow-right {
+            color: #7f84a0;
+            font-size: 14px;
+        }
+
+        /* EMPTY */
+
+        .empty-box {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            margin: 16px 0 4px;
+
+            color: #7d839e;
+
+            font-size: 11px;
+        }
+
+        .empty-box i {
+            font-size: 18px;
+        }
+
+        /* ========================= */
+        /* EXPANDABLE */
+        /* ========================= */
+
+        .history-card-wrap {
+            background: #fff;
+            border-radius: 16px;
+
+            margin-bottom: 10px;
+
+            overflow: hidden;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .03);
+        }
+
+        /* REMOVE EXTRA */
+
+        .expandable-card {
+            margin-bottom: 0;
+            box-shadow: none;
+        }
+
+        /* DETAILS */
+
+        .history-details {
+
+            display: none;
+
+            padding:
+                0 10px 10px 10px;
+        }
+
+        /* ACTIVE */
+
+        .history-card-wrap.active .history-details {
+            display: block;
+        }
+
+        /* DETAIL BOX */
+
+        .detail-row {
+
+            min-height: 38px;
+
+            border-top:
+                1px solid #f1f1f1;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 0 6px;
+        }
+
+        .detail-row span {
+            font-size: 10px;
+            color: #7b8198;
+        }
+
+        .detail-row strong {
+            font-size: 10px;
+            font-weight: 500;
+
+            color: #0b1140;
+
+            text-align: right;
+        }
+
+        /* ARROW */
+
+        .toggle-arrow {
+            transition: .25s;
+            cursor: pointer;
+        }
+
+        /* ROTATE */
+
+        .history-card-wrap.active .toggle-arrow {
+            transform: rotate(180deg);
+        }
+        /* ========================= */
+/* GAME IMAGE */
 /* ========================= */
-/* HEADER */
-/* ========================= */
 
-.topbar{
+.activity-game-img{
 
-  position:sticky;
-  top:0;
+  width:40px;
+  min-width:40px;
 
-  z-index:999;
-
-  background:rgba(247,247,247,.92);
-
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-
-  padding-bottom:8px;
-}
-
-.header-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  margin-bottom:6px;
-}
-
-.back-btn{
-  width:32px;
-  height:32px;
+  height:40px;
+  min-height:40px;
 
   border-radius:10px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  object-fit:cover;
 
-  color:var(--orange-dark);
-
-  font-size:16px;
-}
-
-.page-title{
-  font-size:18px;
-  font-weight:700;
-}
-
-/* DIVIDER */
-
-.divider{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-
-.divider::before,
-.divider::after{
-  content:'';
-
-  width:46px;
-  height:1px;
-
-  background:#ffc89d;
-}
-
-.divider span{
-  color:var(--orange-dark);
-  font-size:8px;
-}
-
-/* ========================= */
-/* FILTERS */
-/* ========================= */
-
-.filters{
-  margin-top:10px;
-
-  display:flex;
-  gap:8px;
-
-  overflow-x:auto;
-
-  scrollbar-width:none;
-}
-
-.filters::-webkit-scrollbar{
-  display:none;
-}
-
-.filter-btn{
-
-  min-width:70px;
-
-  background:#fff;
-
-  border-radius:14px;
-
-  padding:8px 6px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  gap:4px;
-
-  border:1px solid #f0f0f0;
-
-  flex-shrink:0;
-}
-
-.filter-btn.active{
-  background:#fff4ec;
-}
-
-.filter-btn i{
-  font-size:18px;
-}
-
-.filter-btn span{
-  font-size:10px;
-  font-weight:500;
-}
-
-.orange{color:var(--orange-dark);}
-.green{color:var(--green);}
-.purple{color:#8b00ff;}
-.blue{color:#1570ff;}
-
-/* ========================= */
-/* HISTORY */
-/* ========================= */
-
-.history-list{
-  margin-top:10px;
-}
-
-.history-card{
-
-  background:#fff;
-
-  border-radius:16px;
-
-  padding:10px;
-
-  display:flex;
-  align-items:center;
-
-  gap:10px;
-
-  margin-bottom:8px;
-
-  box-shadow:0 2px 8px rgba(0,0,0,.03);
-}
-
-/* ICON */
-
-.history-icon{
-
-  width:44px;
-  height:44px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  flex-shrink:0;
-
-  font-size:20px;
-}
-
-.success-bg{
-  background:#ebfaef;
-  color:var(--green);
-}
-
-.pending-bg{
-  background:#fff4e7;
-  color:var(--orange);
-}
-
-.failed-bg{
-  background:#ffe9e9;
-  color:var(--red);
-}
-
-/* CONTENT */
-
-.history-content{
-  flex:1;
-  min-width:0;
-}
-
-.history-title{
-  font-size:14px;
-  font-weight:600;
-
-  margin-bottom:2px;
-}
-
-.history-date{
-  font-size:10px;
-  color:var(--muted);
-
-  margin-bottom:3px;
-}
-
-.tx-row{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.tx-id{
-  font-size:10px;
-  color:var(--muted);
-}
-
-.copy-icon{
-  color:#7d839e;
-  font-size:11px;
-}
-
-/* RIGHT */
-
-.history-right{
-  text-align:right;
-}
-
-.history-amount{
-  font-size:14px;
-  font-weight:600;
-
-  margin-bottom:4px;
-}
-
-.success-text{
-  color:var(--green);
-}
-
-.pending-text{
-  color:var(--orange);
-}
-
-.failed-text{
-  color:var(--red);
-}
-
-/* STATUS */
-
-.status-pill{
-
-  height:22px;
-
-  padding:0 10px;
-
-  border-radius:999px;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:10px;
-  font-weight:500;
-}
-
-.status-success{
-  background:#ebfaef;
-  color:var(--green);
-}
-
-.status-pending{
-  background:#fff4e7;
-  color:var(--orange);
-}
-
-.status-failed{
-  background:#ffe9e9;
-  color:var(--red);
-}
-
-/* ARROW */
-
-.arrow-right{
-  color:#7f84a0;
-  font-size:14px;
-}
-
-/* EMPTY */
-
-.empty-box{
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  gap:8px;
-
-  margin:16px 0 4px;
-
-  color:#7d839e;
-
-  font-size:11px;
-}
-
-.empty-box i{
-  font-size:18px;
-}
-/* ========================= */
-/* EXPANDABLE */
-/* ========================= */
-
-.history-card-wrap{
-  background:#fff;
-  border-radius:16px;
-
-  margin-bottom:10px;
-
-  overflow:hidden;
-
-  box-shadow:0 2px 8px rgba(0,0,0,.03);
-}
-
-/* REMOVE EXTRA */
-
-.expandable-card{
-  margin-bottom:0;
-  box-shadow:none;
-}
-
-/* DETAILS */
-
-.history-details{
-
-  display:none;
-
-  padding:
-  0 10px 10px 10px;
-}
-
-/* ACTIVE */
-
-.history-card-wrap.active
-.history-details{
   display:block;
+
+  flex-shrink:0;
+
+  background:#f3f5ff;
+
+  padding:2px;
 }
 
-/* DETAIL BOX */
+/* MOBILE */
 
-.detail-row{
+@media (max-width:480px){
 
-  min-height:38px;
+  .activity-game-img{
 
-  border-top:
-  1px solid #f1f1f1;
+    width:34px;
+    min-width:34px;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+    height:34px;
+    min-height:34px;
 
-  gap:10px;
+    border-radius:8px;
+  }
 
-  padding:0 6px;
 }
-
-.detail-row span{
-  font-size:10px;
-  color:#7b8198;
-}
-
-.detail-row strong{
-  font-size:10px;
-  font-weight:500;
-
-  color:#0b1140;
-
-  text-align:right;
-}
-
-/* ARROW */
-
-.toggle-arrow{
-  transition:.25s;
-  cursor:pointer;
-}
-
-/* ROTATE */
-
-.history-card-wrap.active
-.toggle-arrow{
-  transform:rotate(180deg);
-}
-</style>
+    </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+    <!-- HEADER -->
 
-<div class="topbar">
+    <div class="topbar">
 
-  <div class="header-row">
+        <div class="header-row">
 
-    <div class="back-btn">
-      <i class="fa-solid fa-arrow-left"></i>
-    </div>
+            <a  style="text-decoration: none;" href="./profile.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
 
-    <div class="page-title">
-      Deposit History
-    </div>
+            <div class="page-title">
+                Deposit History
+            </div>
 
-    <div style="width:32px;"></div>
-
-  </div>
-
-  <div class="divider">
-    <span>◆ ◆ ◆</span>
-  </div>
-
-  <!-- FILTERS -->
-
-<div class="filters">
-
-  <div class="filter-btn active" data-filter="all">
-    <i class="fa-solid fa-table-cells-large orange"></i>
-    <span>All</span>
-  </div>
-
-  <div class="filter-btn" data-filter="deposit">
-    <i class="fa-solid fa-download green"></i>
-    <span>Deposit</span>
-  </div>
-
-  <div class="filter-btn" data-filter="withdraw">
-    <i class="fa-solid fa-upload orange"></i>
-    <span>Withdraw</span>
-  </div>
-
-  <div class="filter-btn" data-filter="bonus">
-    <i class="fa-solid fa-gift purple"></i>
-    <span>Bonus</span>
-  </div>
-
-  <div class="filter-btn" data-filter="activities">
-    <i class="fa-solid fa-gamepad blue"></i>
-    <span>Activities</span>
-  </div>
-
-</div>
-
-</div>
-
-<!-- HISTORY -->
-
-<!-- HISTORY -->
-
-<div class="history-list">
-
-  <!-- ====================== -->
-  <!-- DEPOSIT -->
-  <!-- ====================== -->
-
-  <div class="history-card-wrap" data-type="deposit">
-
-    <div class="history-card expandable-card">
-
-      <div class="history-icon success-bg">
-        <i class="fa-solid fa-download"></i>
-      </div>
-
-      <div class="history-content">
-
-        <div class="history-title">
-          Deposit
-        </div>
-
-        <div class="history-date">
-          May 15, 2024 • 10:30 AM
-        </div>
-
-        <div class="tx-row">
-
-          <div class="tx-id">
-            Tx ID: TXN174729583012
-          </div>
-
-          <i class="fa-regular fa-copy copy-icon"></i>
+            <div style="width:32px;"></div>
 
         </div>
 
-      </div>
-
-      <div class="history-right">
-
-        <div class="history-amount success-text">
-          + $500.00
+        <div class="divider">
+            <span>◆ ◆ ◆</span>
         </div>
 
-        <div class="status-pill status-success">
-          Success
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <div class="filter-btn active" data-filter="all">
+                <i class="fa-solid fa-table-cells-large orange"></i>
+                <span>All</span>
+            </div>
+
+            <div class="filter-btn" data-filter="deposit">
+                <i class="fa-solid fa-download green"></i>
+                <span>Deposit</span>
+            </div>
+
+            <div class="filter-btn" data-filter="withdraw">
+                <i class="fa-solid fa-upload orange"></i>
+                <span>Withdraw</span>
+            </div>
+
+            <div class="filter-btn" data-filter="bonus">
+                <i class="fa-solid fa-gift purple"></i>
+                <span>Bonus</span>
+            </div>
+
+            <div class="filter-btn" data-filter="activities">
+                <i class="fa-solid fa-gamepad blue"></i>
+                <span>Activities</span>
+            </div>
+
         </div>
-
-      </div>
-
-      <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
     </div>
 
-    <!-- DETAILS -->
+    <!-- HISTORY -->
 
-    <div class="history-details">
+    <div class="history-list">
 
-      <div class="detail-row">
-        <span>Transaction Type</span>
-        <strong>Deposit</strong>
-      </div>
+        <!-- ====================== -->
+        <!-- DEPOSIT -->
+        <!-- ====================== -->
 
-      <div class="detail-row">
-        <span>Amount</span>
-        <strong>+ $500.00</strong>
-      </div>
+        <div class="history-card-wrap" data-type="deposit">
 
-      <div class="detail-row">
-        <span>Payment Method</span>
-        <strong>USDT TRC20</strong>
-      </div>
+            <div class="history-card expandable-card">
 
-      <div class="detail-row">
-        <span>Date & Time</span>
-        <strong>May 15, 2024 • 10:30 AM</strong>
-      </div>
+                <div class="history-icon success-bg">
+                    <i class="fa-solid fa-download"></i>
+                </div>
 
-      <div class="detail-row">
-        <span>Transaction ID</span>
-        <strong>TXN174729583012</strong>
-      </div>
+                <div class="history-content">
 
-      <div class="detail-row">
-        <span>Status</span>
+                    <div class="history-title">
+                        Deposit
+                    </div>
 
-        <div class="status-pill status-success">
-          Success
-        </div>
-      </div>
+                    <div class="history-date">
+                        May 15, 2024 • 10:30 AM
+                    </div>
 
-    </div>
+                    <div class="tx-row">
 
-  </div>
+                        <div class="tx-id">
+                            Tx ID: TXN174729583012
+                        </div>
 
-  <!-- ====================== -->
-  <!-- PENDING DEPOSIT -->
-  <!-- ====================== -->
+                        <i class="fa-regular fa-copy copy-icon"></i>
 
-  <div class="history-card-wrap" data-type="deposit">
+                    </div>
 
-    <div class="history-card expandable-card">
+                </div>
 
-      <div class="history-icon pending-bg">
-        <i class="fa-solid fa-download"></i>
-      </div>
+                <div class="history-right">
 
-      <div class="history-content">
+                    <div class="history-amount success-text">
+                        + $500.00
+                    </div>
 
-        <div class="history-title">
-          Deposit
-        </div>
+                    <div class="status-pill status-success">
+                        Success
+                    </div>
 
-        <div class="history-date">
-          May 14, 2024 • 06:20 PM
-        </div>
+                </div>
 
-        <div class="tx-row">
+                <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
-          <div class="tx-id">
-            Tx ID: TXN174729564321
-          </div>
+            </div>
 
-          <i class="fa-regular fa-copy copy-icon"></i>
+            <!-- DETAILS -->
 
-        </div>
+            <div class="history-details">
 
-      </div>
+                <div class="detail-row">
+                    <span>Transaction Type</span>
+                    <strong>Deposit</strong>
+                </div>
 
-      <div class="history-right">
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <strong>+ $500.00</strong>
+                </div>
 
-        <div class="history-amount pending-text">
-          + $150.00
-        </div>
+                <div class="detail-row">
+                    <span>Payment Method</span>
+                    <strong>USDT TRC20</strong>
+                </div>
 
-        <div class="status-pill status-pending">
-          Pending
-        </div>
+                <div class="detail-row">
+                    <span>Date & Time</span>
+                    <strong>May 15, 2024 • 10:30 AM</strong>
+                </div>
 
-      </div>
+                <div class="detail-row">
+                    <span>Transaction ID</span>
+                    <strong>TXN174729583012</strong>
+                </div>
 
-      <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+                <div class="detail-row">
+                    <span>Status</span>
 
-    </div>
+                    <div class="status-pill status-success">
+                        Success
+                    </div>
+                </div>
 
-    <!-- DETAILS -->
-
-    <div class="history-details">
-
-      <div class="detail-row">
-        <span>Transaction Type</span>
-        <strong>Deposit</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Amount</span>
-        <strong>+ $150.00</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Payment Method</span>
-        <strong>USDT TRC20</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Date & Time</span>
-        <strong>May 14, 2024 • 06:20 PM</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Transaction ID</span>
-        <strong>TXN174729564321</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Status</span>
-
-        <div class="status-pill status-pending">
-          Pending
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- ====================== -->
-  <!-- FAILED DEPOSIT -->
-  <!-- ====================== -->
-
-  <div class="history-card-wrap" data-type="deposit">
-
-    <div class="history-card expandable-card">
-
-      <div class="history-icon failed-bg">
-        <i class="fa-solid fa-download"></i>
-      </div>
-
-      <div class="history-content">
-
-        <div class="history-title">
-          Deposit
-        </div>
-
-        <div class="history-date">
-          May 14, 2024 • 03:40 PM
-        </div>
-
-        <div class="tx-row">
-
-          <div class="tx-id">
-            Tx ID: TXN174729551234
-          </div>
-
-          <i class="fa-regular fa-copy copy-icon"></i>
+            </div>
 
         </div>
 
-      </div>
+        <!-- ====================== -->
+        <!-- PENDING DEPOSIT -->
+        <!-- ====================== -->
 
-      <div class="history-right">
+        <div class="history-card-wrap" data-type="deposit">
 
-        <div class="history-amount failed-text">
-          + $50.00
+            <div class="history-card expandable-card">
+
+                <div class="history-icon pending-bg">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+
+                <div class="history-content">
+
+                    <div class="history-title">
+                        Deposit
+                    </div>
+
+                    <div class="history-date">
+                        May 14, 2024 • 06:20 PM
+                    </div>
+
+                    <div class="tx-row">
+
+                        <div class="tx-id">
+                            Tx ID: TXN174729564321
+                        </div>
+
+                        <i class="fa-regular fa-copy copy-icon"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="history-right">
+
+                    <div class="history-amount pending-text">
+                        + $150.00
+                    </div>
+
+                    <div class="status-pill status-pending">
+                        Pending
+                    </div>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+            </div>
+
+            <!-- DETAILS -->
+
+            <div class="history-details">
+
+                <div class="detail-row">
+                    <span>Transaction Type</span>
+                    <strong>Deposit</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <strong>+ $150.00</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Payment Method</span>
+                    <strong>USDT TRC20</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Date & Time</span>
+                    <strong>May 14, 2024 • 06:20 PM</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Transaction ID</span>
+                    <strong>TXN174729564321</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Status</span>
+
+                    <div class="status-pill status-pending">
+                        Pending
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="status-pill status-failed">
-          Failed
+        <!-- ====================== -->
+        <!-- FAILED DEPOSIT -->
+        <!-- ====================== -->
+
+        <div class="history-card-wrap" data-type="deposit">
+
+            <div class="history-card expandable-card">
+
+                <div class="history-icon failed-bg">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+
+                <div class="history-content">
+
+                    <div class="history-title">
+                        Deposit
+                    </div>
+
+                    <div class="history-date">
+                        May 14, 2024 • 03:40 PM
+                    </div>
+
+                    <div class="tx-row">
+
+                        <div class="tx-id">
+                            Tx ID: TXN174729551234
+                        </div>
+
+                        <i class="fa-regular fa-copy copy-icon"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="history-right">
+
+                    <div class="history-amount failed-text">
+                        + $50.00
+                    </div>
+
+                    <div class="status-pill status-failed">
+                        Failed
+                    </div>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+            </div>
+
+            <!-- DETAILS -->
+
+            <div class="history-details">
+
+                <div class="detail-row">
+                    <span>Transaction Type</span>
+                    <strong>Deposit</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <strong>+ $50.00</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Payment Method</span>
+                    <strong>USDT TRC20</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Date & Time</span>
+                    <strong>May 14, 2024 • 03:40 PM</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Transaction ID</span>
+                    <strong>TXN174729551234</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Status</span>
+
+                    <div class="status-pill status-failed">
+                        Failed
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-      </div>
+        <!-- ====================== -->
+        <!-- DEPOSIT BONUS -->
+        <!-- ====================== -->
 
-      <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+        <div class="history-card-wrap" data-type="bonus">
 
-    </div>
+            <div class="history-card expandable-card">
 
-    <!-- DETAILS -->
+                <div class="history-icon success-bg">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
 
-    <div class="history-details">
+                <div class="history-content">
 
-      <div class="detail-row">
-        <span>Transaction Type</span>
-        <strong>Deposit</strong>
-      </div>
+                    <div class="history-title">
+                        Deposit Bonus
+                    </div>
 
-      <div class="detail-row">
-        <span>Amount</span>
-        <strong>+ $50.00</strong>
-      </div>
+                    <div class="history-date">
+                        May 15, 2024 • 09:20 AM
+                    </div>
 
-      <div class="detail-row">
-        <span>Payment Method</span>
-        <strong>USDT TRC20</strong>
-      </div>
+                    <div class="tx-row">
 
-      <div class="detail-row">
-        <span>Date & Time</span>
-        <strong>May 14, 2024 • 03:40 PM</strong>
-      </div>
+                        <div class="tx-id">
+                            Bonus ID: BNX174729571892
+                        </div>
 
-      <div class="detail-row">
-        <span>Transaction ID</span>
-        <strong>TXN174729551234</strong>
-      </div>
+                        <i class="fa-regular fa-copy copy-icon"></i>
 
-      <div class="detail-row">
-        <span>Status</span>
+                    </div>
 
-        <div class="status-pill status-failed">
-          Failed
-        </div>
-      </div>
+                </div>
 
-    </div>
+                <div class="history-right">
 
-  </div>
+                    <div class="history-amount success-text">
+                        + 20.00 USDT
+                    </div>
 
-  <!-- ====================== -->
-  <!-- DEPOSIT BONUS -->
-  <!-- ====================== -->
+                    <div class="status-pill status-success">
+                        Completed
+                    </div>
 
-  <div class="history-card-wrap" data-type="bonus">
+                </div>
 
-    <div class="history-card expandable-card">
+                <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
-      <div class="history-icon success-bg">
-        <i class="fa-solid fa-gift"></i>
-      </div>
+            </div>
 
-      <div class="history-content">
+            <div class="history-details">
 
-        <div class="history-title">
-          Deposit Bonus
-        </div>
+                <div class="detail-row">
+                    <span>Bonus Type</span>
+                    <strong>Deposit Bonus</strong>
+                </div>
 
-        <div class="history-date">
-          May 15, 2024 • 09:20 AM
-        </div>
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <strong>+ 20.00 USDT</strong>
+                </div>
 
-        <div class="tx-row">
+                <div class="detail-row">
+                    <span>Description</span>
+                    <strong>Bonus for deposit of 100 USDT</strong>
+                </div>
 
-          <div class="tx-id">
-            Bonus ID: BNX174729571892
-          </div>
+                <div class="detail-row">
+                    <span>Date & Time</span>
+                    <strong>May 15, 2024 • 09:20 AM</strong>
+                </div>
 
-          <i class="fa-regular fa-copy copy-icon"></i>
+                <div class="detail-row">
+                    <span>Bonus ID</span>
+                    <strong>BNX174729571892</strong>
+                </div>
 
-        </div>
+            </div>
 
-      </div>
-
-      <div class="history-right">
-
-        <div class="history-amount success-text">
-          + 20.00 USDT
         </div>
 
-        <div class="status-pill status-success">
-          Completed
-        </div>
+        <!-- ====================== -->
+        <!-- REFERRAL BONUS -->
+        <!-- ====================== -->
 
-      </div>
+        <div class="history-card-wrap" data-type="bonus">
 
-      <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+            <div class="history-card expandable-card">
 
-    </div>
-
-    <div class="history-details">
-
-      <div class="detail-row">
-        <span>Bonus Type</span>
-        <strong>Deposit Bonus</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Amount</span>
-        <strong>+ 20.00 USDT</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Description</span>
-        <strong>Bonus for deposit of 100 USDT</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Date & Time</span>
-        <strong>May 15, 2024 • 09:20 AM</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Bonus ID</span>
-        <strong>BNX174729571892</strong>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- ====================== -->
-  <!-- REFERRAL BONUS -->
-  <!-- ====================== -->
-
-  <div class="history-card-wrap" data-type="bonus">
-
-    <div class="history-card expandable-card">
-
-      <div class="history-icon" style="
+                <div class="history-icon" style="
         background:#f6ebff;
         color:#8b00ff;
       ">
-        <i class="fa-solid fa-user-group"></i>
-      </div>
+                    <i class="fa-solid fa-user-group"></i>
+                </div>
 
-      <div class="history-content">
+                <div class="history-content">
 
-        <div class="history-title">
-          Referral Bonus
+                    <div class="history-title">
+                        Referral Bonus
+                    </div>
+
+                    <div class="history-date">
+                        May 15, 2024 • 10:45 AM
+                    </div>
+
+                    <div class="tx-row">
+
+                        <div class="tx-id">
+                            Bonus ID: BNX174729583045
+                        </div>
+
+                        <i class="fa-regular fa-copy copy-icon"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="history-right">
+
+                    <div class="history-amount success-text">
+                        + 50.00 USDT
+                    </div>
+
+                    <div class="status-pill status-success">
+                        Completed
+                    </div>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+            </div>
+
+            <div class="history-details">
+
+                <div class="detail-row">
+                    <span>Bonus Type</span>
+                    <strong>Referral Bonus</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <strong>+ 50.00 USDT</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Description</span>
+                    <strong>Referral reward from JohnDoe123</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Date & Time</span>
+                    <strong>May 15, 2024 • 10:45 AM</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Bonus ID</span>
+                    <strong>BNX174729583045</strong>
+                </div>
+
+            </div>
+
         </div>
-
-        <div class="history-date">
-          May 15, 2024 • 10:45 AM
-        </div>
-
-        <div class="tx-row">
-
-          <div class="tx-id">
-            Bonus ID: BNX174729583045
-          </div>
-
-          <i class="fa-regular fa-copy copy-icon"></i>
-
-        </div>
-
-      </div>
-
-      <div class="history-right">
-
-        <div class="history-amount success-text">
-          + 50.00 USDT
-        </div>
-
-        <div class="status-pill status-success">
-          Completed
-        </div>
-
-      </div>
-
-      <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
     </div>
-
-    <div class="history-details">
-
-      <div class="detail-row">
-        <span>Bonus Type</span>
-        <strong>Referral Bonus</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Amount</span>
-        <strong>+ 50.00 USDT</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Description</span>
-        <strong>Referral reward from JohnDoe123</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Date & Time</span>
-        <strong>May 15, 2024 • 10:45 AM</strong>
-      </div>
-
-      <div class="detail-row">
-        <span>Bonus ID</span>
-        <strong>BNX174729583045</strong>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
 <!-- ====================== -->
-<!-- WITHDRAW -->
+<!-- WITHDRAW SUCCESS -->
 <!-- ====================== -->
 
 <div class="history-card-wrap" data-type="withdraw">
 
   <div class="history-card expandable-card">
 
-    <!-- ICON -->
+    <div class="history-icon success-bg">
+      <i class="fa-solid fa-upload"></i>
+    </div>
+
+    <div class="history-content">
+
+      <div class="history-title">
+        Withdraw
+      </div>
+
+      <div class="history-date">
+        May 16, 2024 • 06:20 PM
+      </div>
+
+      <div class="tx-row">
+
+        <div class="tx-id">
+          Withdraw ID: WDX174729771122
+        </div>
+
+        <i class="fa-regular fa-copy copy-icon"></i>
+
+      </div>
+
+    </div>
+
+    <div class="history-right">
+
+      <div class="history-amount success-text">
+        - 200.00 USDT
+      </div>
+
+      <div class="status-pill status-success">
+        Success
+      </div>
+
+    </div>
+
+    <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+  </div>
+
+  <!-- DETAILS -->
+
+  <div class="history-details">
+
+    <div class="detail-row">
+      <span>Transaction Type</span>
+      <strong>Withdraw</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Amount</span>
+      <strong>- 200.00 USDT</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Withdraw Method</span>
+      <strong>USDT TRC20</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Wallet Address</span>
+      <strong>TJ92xA...1KPQ</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Date & Time</span>
+      <strong>May 16, 2024 • 06:20 PM</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Withdraw ID</span>
+      <strong>WDX174729771122</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Status</span>
+
+      <div class="status-pill status-success">
+        Success
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ====================== -->
+<!-- WITHDRAW PENDING -->
+<!-- ====================== -->
+
+<div class="history-card-wrap" data-type="withdraw">
+
+  <div class="history-card expandable-card">
 
     <div class="history-icon pending-bg">
       <i class="fa-solid fa-upload"></i>
     </div>
-
-    <!-- CONTENT -->
 
     <div class="history-content">
 
@@ -988,8 +1123,6 @@ body{
 
     </div>
 
-    <!-- RIGHT -->
-
     <div class="history-right">
 
       <div class="history-amount pending-text">
@@ -1001,8 +1134,6 @@ body{
       </div>
 
     </div>
-
-    <!-- ARROW -->
 
     <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
@@ -1053,88 +1184,292 @@ body{
   </div>
 
 </div>
-<!-- EMPTY -->
 
-<div class="empty-box">
+<!-- ====================== -->
+<!-- WITHDRAW FAILED -->
+<!-- ====================== -->
 
-  <i class="fa-regular fa-file-lines"></i>
+<div class="history-card-wrap" data-type="withdraw">
 
-  <span>No more deposits</span>
+  <div class="history-card expandable-card">
+
+    <div class="history-icon failed-bg">
+      <i class="fa-solid fa-upload"></i>
+    </div>
+
+    <div class="history-content">
+
+      <div class="history-title">
+        Withdraw
+      </div>
+
+      <div class="history-date">
+        May 15, 2024 • 11:45 PM
+      </div>
+
+      <div class="tx-row">
+
+        <div class="tx-id">
+          Withdraw ID: WDX174729662110
+        </div>
+
+        <i class="fa-regular fa-copy copy-icon"></i>
+
+      </div>
+
+    </div>
+
+    <div class="history-right">
+
+      <div class="history-amount failed-text">
+        - 75.00 USDT
+      </div>
+
+      <div class="status-pill status-failed">
+        Failed
+      </div>
+
+    </div>
+
+    <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+  </div>
+
+  <!-- DETAILS -->
+
+  <div class="history-details">
+
+    <div class="detail-row">
+      <span>Transaction Type</span>
+      <strong>Withdraw</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Amount</span>
+      <strong>- 75.00 USDT</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Withdraw Method</span>
+      <strong>USDT TRC20</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Failure Reason</span>
+      <strong>Invalid wallet address</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Date & Time</span>
+      <strong>May 15, 2024 • 11:45 PM</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Withdraw ID</span>
+      <strong>WDX174729662110</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Status</span>
+
+      <div class="status-pill status-failed">
+        Failed
+      </div>
+    </div>
+
+  </div>
 
 </div>
-<script>
 
-/* ========================= */
-/* FILTERS */
-/* ========================= */
+    <!-- ====================== -->
+    <!-- ACTIVITIES -->
+    <!-- ====================== -->
 
-const filterBtns =
-document.querySelectorAll(".filter-btn");
+    <div class="history-card-wrap" data-type="activities">
 
-const allCards =
-document.querySelectorAll(
-".history-card-wrap"
-);
+        <div class="history-card expandable-card">
 
-filterBtns.forEach(function(btn){
+            <!-- ICON -->
 
-  btn.addEventListener("click", function(){
+            <img src="https://cdn-icons-png.flaticon.com/512/566/566294.png" class="activity-game-img">
 
-    filterBtns.forEach(function(item){
+            <!-- CONTENT -->
 
-      item.classList.remove("active");
+            <div class="history-content">
 
-    });
+                <div class="history-title">
+                    Ludo
+                </div>
 
-    this.classList.add("active");
+                <div class="history-date">
+                    May 16, 2024 • 07:15 PM
+                </div>
 
-    const filter =
-    this.getAttribute("data-filter");
+                <div class="tx-row">
 
-    allCards.forEach(function(card){
+                    <div class="tx-id">
+                        Match ID: MCH174729881221
+                    </div>
 
-      const type =
-      card.getAttribute("data-type");
+                    <i class="fa-regular fa-copy copy-icon"></i>
 
-      if(filter === "all" || type === filter){
+                </div>
 
-        card.style.display = "block";
+            </div>
 
-      }else{
+            <!-- RIGHT -->
 
-        card.style.display = "none";
+            <div class="history-right">
 
-      }
+                <div class="history-amount success-text">
+                    + 35.00 USDT
+                </div>
 
-    });
+                <div class="status-pill status-success">
+                    Won
+                </div>
 
-  });
+            </div>
 
-});
+            <!-- ARROW -->
+
+            <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+        </div>
+
+        <!-- DETAILS -->
+
+        <div class="history-details">
+
+            <div class="detail-row">
+                <span>Activity Type</span>
+                <strong>Ludo</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Match Result</span>
+                <strong>Victory</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Winning Amount</span>
+                <strong>+ 35.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Entry Fee</span>
+                <strong>10.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Opponent</span>
+                <strong>Player_X92</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>May 16, 2024 • 07:15 PM</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Match ID</span>
+                <strong>MCH174729881221</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Status</span>
+
+                <div class="status-pill status-success">
+                    Won
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- EMPTY -->
+
+    <div class="empty-box">
+
+        <i class="fa-regular fa-file-lines"></i>
+
+        <span>No more deposits</span>
+
+    </div>
+    <script>
+
+        /* ========================= */
+        /* FILTERS */
+        /* ========================= */
+
+        const filterBtns =
+            document.querySelectorAll(".filter-btn");
+
+        const allCards =
+            document.querySelectorAll(
+                ".history-card-wrap"
+            );
+
+        filterBtns.forEach(function (btn) {
+
+            btn.addEventListener("click", function () {
+
+                filterBtns.forEach(function (item) {
+
+                    item.classList.remove("active");
+
+                });
+
+                this.classList.add("active");
+
+                const filter =
+                    this.getAttribute("data-filter");
+
+                allCards.forEach(function (card) {
+
+                    const type =
+                        card.getAttribute("data-type");
+
+                    if (filter === "all" || type === filter) {
+
+                        card.style.display = "block";
+
+                    } else {
+
+                        card.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+        });
 
 
-/* ========================= */
-/* EXPAND DETAILS */
-/* ========================= */
+        /* ========================= */
+        /* EXPAND DETAILS */
+        /* ========================= */
 
-const expandableCards =
-document.querySelectorAll(
-".history-card-wrap"
-);
+        const expandableCards =
+            document.querySelectorAll(
+                ".history-card-wrap"
+            );
 
-expandableCards.forEach(function(card){
+        expandableCards.forEach(function (card) {
 
-  const top =
-  card.querySelector(".expandable-card");
+            const top =
+                card.querySelector(".expandable-card");
 
-  top.addEventListener("click", function(){
+            top.addEventListener("click", function () {
 
-    card.classList.toggle("active");
+                card.classList.toggle("active");
 
-  });
+            });
 
-});
+        });
 
-</script>
+    </script>
 </body>
+
 </html>

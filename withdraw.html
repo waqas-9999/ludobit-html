@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>LudoBit Withdraw</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+  --orange:#ff9800;
+  --orange-dark:#ff5e00;
+
+  --text:#0b1140;
+  --muted:#7b8198;
+
+  --bg:#f8f8f8;
+  --card:#ffffff;
+
+  --border:#ece7e3;
+
+  --green:#16c46d;
+  --red:#ff3d3d;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+
+  max-width:480px;
+  margin:0 auto;
+
+  min-height:100vh;
+
+  padding:8px;
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:12px;
+}
+
+.icon-btn{
+
+  width:36px;
+  height:36px;
+
+  border-radius:12px;
+
+  background:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  color:var(--orange-dark);
+
+  font-size:15px;
+
+  box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+.page-title{
+  font-size:18px;
+  font-weight:700;
+}
+
+/* ========================= */
+/* TABS */
+/* ========================= */
+
+.deposit-tabs{
+
+  background:#fff;
+
+  border-radius:14px;
+
+  padding:4px;
+
+  display:flex;
+
+  margin-bottom:12px;
+
+  box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+.deposit-tab{
+
+  flex:1;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:transparent;
+
+  color:#7c8198;
+
+  font-size:12px;
+  font-weight:600;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:6px;
+
+  text-decoration:none;
+}
+
+.deposit-tab.active{
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+
+  color:#fff;
+}
+
+.deposit-tab i{
+  font-size:14px;
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.deposit-card{
+
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:12px;
+
+  margin-bottom:12px;
+
+  box-shadow:0 2px 10px rgba(0,0,0,.03);
+}
+
+/* ========================= */
+/* GRID */
+/* ========================= */
+
+.deposit-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:8px;
+
+  margin-bottom:10px;
+}
+
+/* ========================= */
+/* CUSTOM DROPDOWN */
+/* ========================= */
+
+.custom-dropdown{
+  position:relative;
+}
+
+.dropdown-selected{
+
+  height:50px;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  background:#fff;
+
+  padding:0 10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  cursor:pointer;
+}
+
+.selected-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.coin-img{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.dropdown-selected span{
+  font-size:11px;
+  font-weight:600;
+}
+
+.dropdown-selected i{
+  color:#7b7f95;
+  font-size:11px;
+}
+
+/* OPTIONS */
+
+.dropdown-options{
+
+  position:absolute;
+
+  top:56px;
+  left:0;
+
+  width:100%;
+
+  background:#fff;
+
+  border-radius:12px;
+
+  padding:5px;
+
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+
+  display:none;
+
+  z-index:99;
+}
+
+.custom-dropdown.active
+.dropdown-options{
+  display:block;
+}
+
+.dropdown-option{
+
+  height:42px;
+
+  border-radius:10px;
+
+  padding:0 10px;
+
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+  cursor:pointer;
+}
+
+.dropdown-option:hover{
+  background:#fff6ef;
+}
+
+.dropdown-option.active{
+  background:#fff1e3;
+}
+
+.dropdown-option span{
+  font-size:11px;
+  font-weight:500;
+}
+
+/* ========================= */
+/* INPUT */
+/* ========================= */
+
+.amount-wrap{
+  position:relative;
+}
+
+.deposit-input{
+
+  width:100%;
+
+  height:50px;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  padding:0 12px;
+
+  font-size:12px;
+
+  font-family:'Poppins',sans-serif;
+
+  outline:none;
+
+  margin-bottom:10px;
+}
+
+.deposit-input::placeholder{
+  color:#9ea3ba;
+}
+
+/* RIGHT */
+
+.amount-right{
+
+  position:absolute;
+
+  right:12px;
+  top:50%;
+
+  transform:translateY(-60%);
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+}
+
+.amount-right span{
+
+  color:#8b8fa5;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+#maxBtn{
+
+  border:none;
+  background:none;
+
+  color:var(--orange-dark);
+
+  font-size:12px;
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* ========================= */
+/* WITHDRAW INFO */
+/* ========================= */
+
+.withdraw-info{
+
+  min-height:50px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:10px;
+
+  gap:10px;
+}
+
+.withdraw-info-item{
+  flex:1;
+}
+
+.withdraw-info-item span{
+
+  display:block;
+
+  font-size:9px;
+
+  color:#656b85;
+
+  margin-bottom:3px;
+}
+
+.withdraw-info-item strong{
+
+  color:var(--orange-dark);
+
+  font-size:10px;
+  font-weight:600;
+}
+
+.withdraw-divider{
+
+  width:1px;
+  height:24px;
+
+  background:#ececec;
+}
+
+/* ========================= */
+/* LABEL */
+/* ========================= */
+
+.section-label{
+
+  font-size:13px;
+  font-weight:600;
+
+  margin-bottom:10px;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.deposit-btn{
+
+  width:100%;
+
+  height:48px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+
+  color:#fff;
+
+  font-size:14px;
+  font-weight:600;
+
+  margin-bottom:12px;
+
+  opacity:.5;
+  pointer-events:none;
+
+  transition:.25s;
+}
+
+.deposit-btn.active-btn{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ========================= */
+/* NOTE */
+/* ========================= */
+
+.note-item{
+
+  min-height:58px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-bottom:1px solid #f1f1f1;
+}
+
+.no-border{
+  border-bottom:none;
+}
+
+.note-icon{
+
+  width:28px;
+  height:28px;
+
+  border-radius:50%;
+
+  background:#fff5ed;
+
+  color:var(--orange-dark);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  font-size:12px;
+}
+
+.note-text{
+
+  font-size:10px;
+
+  line-height:1.6;
+
+  color:#404662;
+}
+
+/* ========================= */
+/* SUCCESS */
+/* ========================= */
+
+.success-box{
+
+  display:none;
+
+  background:#ebfff3;
+
+  border:1px solid #cfeedd;
+
+  border-radius:12px;
+
+  padding:12px;
+
+  margin-bottom:12px;
+
+  color:var(--green);
+
+  font-size:11px;
+  font-weight:600;
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width:480px){
+
+  body{
+    padding:6px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="topbar">
+
+  <a href="./profile.html" class="icon-btn">
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+
+  <div class="page-title">
+    Withdraw
+  </div>
+
+  <a href="./deposit-history.html" class="icon-btn">
+    <i class="fa-regular fa-file-lines"></i>
+  </a>
+
+</div>
+
+<!-- TABS -->
+
+<div class="deposit-tabs">
+
+  <button class="deposit-tab active">
+    <i class="fa-brands fa-bitcoin"></i>
+    Crypto
+  </button>
+
+  <a class="deposit-tab" href="#">
+    <i class="fa-solid fa-building-columns"></i>
+    Fiat
+  </a>
+
+</div>
+
+<!-- FORM -->
+
+<div class="deposit-card">
+
+  <!-- GRID -->
+
+  <div class="deposit-grid">
+
+    <!-- CURRENCY -->
+
+    <div class="custom-dropdown" id="currencyDropdown">
+
+      <div class="dropdown-selected">
+
+        <div class="selected-left">
+
+          <img
+          src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
+          class="coin-img"
+          id="selectedCurrencyImg">
+
+          <span id="selectedCurrencyText">
+            USDT
+          </span>
+
+        </div>
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+      </div>
+
+      <!-- OPTIONS -->
+
+      <div class="dropdown-options">
+
+        <div
+        class="dropdown-option active"
+        data-name="USDT"
+        data-img="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029">
+
+          <img
+          src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
+          class="coin-img">
+
+          <span>USDT</span>
+
+        </div>
+
+        <div
+        class="dropdown-option"
+        data-name="Bitcoin"
+        data-img="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029">
+
+          <img
+          src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
+          class="coin-img">
+
+          <span>Bitcoin</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NETWORK -->
+
+    <div class="custom-dropdown" id="networkDropdown">
+
+      <div class="dropdown-selected">
+
+        <div class="selected-left">
+
+          <img
+          src="https://cryptologos.cc/logos/tron-trx-logo.png?v=029"
+          class="coin-img"
+          id="selectedNetworkImg">
+
+          <span id="selectedNetworkText">
+            Tron (TRC20)
+          </span>
+
+        </div>
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+      </div>
+
+      <!-- OPTIONS -->
+
+      <div class="dropdown-options">
+
+        <div
+        class="dropdown-option active"
+        data-name="Tron (TRC20)"
+        data-img="https://cryptologos.cc/logos/tron-trx-logo.png?v=029">
+
+          <img
+          src="https://cryptologos.cc/logos/tron-trx-logo.png?v=029"
+          class="coin-img">
+
+          <span>Tron (TRC20)</span>
+
+        </div>
+
+        <div
+        class="dropdown-option"
+        data-name="Ethereum (ERC20)"
+        data-img="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029">
+
+          <img
+          src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+          class="coin-img">
+
+          <span>Ethereum (ERC20)</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- AMOUNT -->
+
+  <div class="amount-wrap">
+
+    <input
+    type="text"
+    class="deposit-input"
+    id="amountInput"
+    placeholder="Enter amount">
+
+    <div class="amount-right">
+
+      <span>USDT</span>
+
+      <button id="maxBtn">
+        Max
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- INFO -->
+
+  <div class="withdraw-info">
+
+    <div class="withdraw-info-item">
+
+      <span>Minimum Withdrawal</span>
+
+      <strong>5 USDT</strong>
+
+    </div>
+
+    <div class="withdraw-divider"></div>
+
+    <div class="withdraw-info-item">
+
+      <span>Available Balance</span>
+
+      <strong>120.50 USDT</strong>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- WALLET -->
+
+<div class="deposit-card">
+
+  <div class="section-label">
+    Wallet Address
+  </div>
+
+  <input
+  type="text"
+  class="deposit-input"
+  id="walletInput"
+  placeholder="Enter wallet address">
+
+</div>
+
+<!-- SUCCESS -->
+
+<div class="success-box" id="successBox">
+  Withdraw request submitted successfully
+</div>
+
+<!-- BUTTON -->
+
+<button
+class="deposit-btn"
+id="withdrawBtn">
+
+  Withdraw
+
+</button>
+
+<!-- NOTE -->
+
+<div class="deposit-card">
+
+  <div
+  class="section-label"
+  style="color:var(--orange-dark);">
+
+    Note
+
+  </div>
+
+  <!-- ITEM -->
+
+  <div class="note-item">
+
+    <div class="note-icon">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+
+    <div class="note-text">
+      Ensure the address and network are correct.
+    </div>
+
+  </div>
+
+  <!-- ITEM -->
+
+  <div class="note-item">
+
+    <div class="note-icon">
+      <i class="fa-regular fa-clock"></i>
+    </div>
+
+    <div class="note-text">
+      Withdraw time depends on network congestion.
+    </div>
+
+  </div>
+
+  <!-- ITEM -->
+
+  <div class="note-item no-border">
+
+    <div class="note-icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <div class="note-text">
+      We are not responsible for any loss due to wrong address or network.
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* ========================= */
+/* DROPDOWN */
+/* ========================= */
+
+function initDropdown(id){
+
+  const dropdown =
+  document.getElementById(id);
+
+  const selected =
+  dropdown.querySelector(
+    ".dropdown-selected"
+  );
+
+  const options =
+  dropdown.querySelectorAll(
+    ".dropdown-option"
+  );
+
+  selected.addEventListener(
+    "click",
+    function(){
+
+      dropdown.classList.toggle(
+        "active"
+      );
+
+    }
+  );
+
+  options.forEach(function(option){
+
+    option.addEventListener(
+      "click",
+      function(){
+
+        const name =
+        this.dataset.name;
+
+        const img =
+        this.dataset.img;
+
+        dropdown.querySelector(
+          "span"
+        ).innerText = name;
+
+        dropdown.querySelector(
+          ".coin-img"
+        ).src = img;
+
+        options.forEach(function(item){
+
+          item.classList.remove(
+            "active"
+          );
+
+        });
+
+        this.classList.add(
+          "active"
+        );
+
+        dropdown.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+  });
+
+  window.addEventListener(
+    "click",
+    function(e){
+
+      if(!dropdown.contains(e.target)){
+
+        dropdown.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+initDropdown("currencyDropdown");
+initDropdown("networkDropdown");
+
+/* ========================= */
+/* FORM */
+/* ========================= */
+
+const amountInput =
+document.getElementById(
+  "amountInput"
+);
+
+const walletInput =
+document.getElementById(
+  "walletInput"
+);
+
+const withdrawBtn =
+document.getElementById(
+  "withdrawBtn"
+);
+
+const successBox =
+document.getElementById(
+  "successBox"
+);
+
+/* CHECK */
+
+function checkForm(){
+
+  if(
+    amountInput.value.trim() !== "" &&
+    walletInput.value.trim() !== ""
+  ){
+
+    withdrawBtn.classList.add(
+      "active-btn"
+    );
+
+  }else{
+
+    withdrawBtn.classList.remove(
+      "active-btn"
+    );
+
+  }
+
+}
+
+/* INPUT */
+
+amountInput.addEventListener(
+  "input",
+  checkForm
+);
+
+walletInput.addEventListener(
+  "input",
+  checkForm
+);
+
+/* MAX */
+
+document
+.getElementById("maxBtn")
+.addEventListener(
+  "click",
+  function(){
+
+    amountInput.value = "120.50";
+
+    checkForm();
+
+  }
+);
+
+/* WITHDRAW */
+
+withdrawBtn.addEventListener(
+  "click",
+  function(){
+
+    if(
+      withdrawBtn.classList.contains(
+        "active-btn"
+      )
+    ){
+
+      successBox.style.display =
+      "block";
+
+      withdrawBtn.innerText =
+      "Withdraw Requested";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
