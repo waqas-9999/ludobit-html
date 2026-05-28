@@ -1152,7 +1152,7 @@ body{
   <!-- MENU -->
   <div class="menu">
 
-    <div class="menu-item">
+    <a style="text-decoration: none; color:black" href="./faq.html" class="menu-item">
       <div class="menu-left">
         <div class="menu-icon">
           <i class="fa-solid fa-circle-info"></i>
@@ -1166,7 +1166,7 @@ body{
       <div class="arrow">
         <i class="fa-solid fa-chevron-right"></i>
       </div>
-    </div>
+    </a>
 
     <div class="menu-item">
       <div class="menu-left">
@@ -1305,6 +1305,27 @@ copyReferralBtn.addEventListener(
 
   }
 );
+
+</script>
+<script>
+
+/* FORCE PAGE TOP */
+
+if ('scrollRestoration' in history) {
+
+    history.scrollRestoration = 'manual';
+
+}
+
+window.onload = function () {
+
+    setTimeout(function () {
+
+        window.scrollTo(0, 0);
+
+    }, 0);
+
+};
 
 </script>
 </body>

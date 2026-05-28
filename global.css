@@ -268,9 +268,8 @@ textarea{
   }
 
   .hero-background-2 {
-    width: 323px;
-    height: 138px;
-    max-height: min(260px, 38vh);
+    width: 276px;
+    height: 128px;
     background-image: url('./assets/home-banner.png');
     background-size: cover;
     background-position: center;
@@ -322,7 +321,7 @@ textarea{
     border-radius: var(--radius-lg);
     border: 2px solid #F3F4F6;
     padding: var(--space-lg) var(--space-md) var(--space-sm);
-    margin: clamp(-22px, -5vw, -28px) var(--page-pad) 0;
+    /* margin: clamp(-22px, -5vw, -28px) var(--page-pad) 0; */
     position: relative;
     z-index: 5;
     box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.12);

@@ -968,15 +968,15 @@ body{
 
   <div class="tabs">
 
-    <button class="tab active btn-style">
+    <button class="tab active btn-style" data-type="all">
       Pools
     </button>
 
-    <button class="tab btn-style">
+    <button class="tab btn-style" data-type="2player">
       2 Player
     </button>
 
-    <button class="tab btn-style">
+    <button class="tab btn-style" data-type="4player">
       4 Player
     </button>
 
@@ -988,7 +988,7 @@ body{
 
   <!-- CARD 1 -->
 
-  <div class="match-slide">
+  <div class="match-slide" data-match="2player">
 
     <div class="match-card">
 
@@ -1044,7 +1044,7 @@ body{
 
   <!-- CARD 2 -->
 
-  <div class="match-slide">
+  <div class="match-slide" data-match="2player">
 
     <div class="match-card">
 
@@ -1100,12 +1100,12 @@ body{
 
   <!-- CARD 3 -->
 
-  <div class="match-slide">
+  <div class="match-slide" data-match="4player">
 
     <div class="match-card">
 
       <div class="match-header">
-        2PLAYER &nbsp;&nbsp; 1Winner
+        4PLAYER &nbsp;&nbsp; 1Winner
       </div>
 
       <div class="match-body">
@@ -1204,6 +1204,9 @@ settingsPopup.addEventListener("click", function(e){
 const tabs =
 document.querySelectorAll(".tab");
 
+const matchSlides =
+document.querySelectorAll(".match-slide");
+
 tabs.forEach(function(tab){
 
   tab.addEventListener("click", function(){
@@ -1220,8 +1223,56 @@ tabs.forEach(function(tab){
 
     this.classList.add("active");
 
+    /* FILTER */
+
+    const type =
+    this.getAttribute("data-type");
+
+    matchSlides.forEach(function(slide){
+
+      const match =
+      slide.getAttribute("data-match");
+
+      if(type === "all"){
+
+        slide.style.display = "block";
+
+      }else if(match === type){
+
+        slide.style.display = "block";
+
+      }else{
+
+        slide.style.display = "none";
+
+      }
+
+    });
+
   });
 
 });
 </script>
+<script>
+
+/* FORCE PAGE TOP */
+
+if ('scrollRestoration' in history) {
+
+    history.scrollRestoration = 'manual';
+
+}
+
+window.onload = function () {
+
+    setTimeout(function () {
+
+        window.scrollTo(0, 0);
+
+    }, 0);
+
+};
+
+</script>
+
 </html>

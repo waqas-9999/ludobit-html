@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FAQ</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --orange: #ff9800;
+      --orange-dark: #ff5e00;
+
+      --text: #0b1140;
+      --muted: #6f758d;
+
+      --bg: #f7f7f7;
+      --card: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+
+      max-width: 480px;
+      margin: 0 auto;
+
+      min-height: 100vh;
+
+      padding: 14px;
+    }
+
+    /* ====================== */
+    /* HEADER */
+    /* ====================== */
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 12px;
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 14px;
+
+      background: #fff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--orange-dark);
+
+      font-size: 18px;
+
+      text-decoration: none;
+
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .header-space {
+      width: 42px;
+    }
+
+    /* DIVIDER */
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 10px;
+
+      margin-bottom: 24px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+
+      width: 56px;
+      height: 1px;
+
+      background: #ffc89d;
+    }
+
+    .divider span {
+      color: var(--orange-dark);
+      font-size: 10px;
+    }
+
+    /* ====================== */
+    /* FAQ CARD */
+    /* ====================== */
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--card);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .03);
+
+      border: 1px solid #f3f1ef;
+    }
+
+    .faq-question {
+      min-height: 82px;
+
+      padding: 0 18px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 14px;
+
+      cursor: pointer;
+    }
+
+    /* ICON */
+
+    .faq-icon {
+      width: 46px;
+      height: 46px;
+
+      min-width: 46px;
+
+      border-radius: 50%;
+
+      background: #fff5ef;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--orange-dark);
+
+      font-size: 22px;
+    }
+
+    /* TEXT */
+
+    .faq-title {
+      flex: 1;
+
+      font-size: 17px;
+      font-weight: 600;
+
+      line-height: 1.5;
+    }
+
+    /* ARROW */
+
+    .faq-arrow {
+      color: var(--orange-dark);
+
+      font-size: 20px;
+
+      transition: .25s;
+    }
+
+    /* ANSWER */
+
+    .faq-answer {
+      display: none;
+
+      padding:
+        0 22px 22px 22px;
+    }
+
+    .faq-answer p {
+      color: #4f566f;
+
+      font-size: 15px;
+
+      line-height: 1.9;
+    }
+
+    /* ACTIVE */
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* ====================== */
+    /* SUPPORT BOX */
+    /* ====================== */
+
+    .support-box {
+      margin-top: 22px;
+
+      background: #fff5ef;
+
+      border-radius: 22px;
+
+      padding: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 14px;
+    }
+
+    .support-left {
+      display: flex;
+      align-items: center;
+
+      gap: 14px;
+    }
+
+    .support-icon {
+      width: 58px;
+      height: 58px;
+
+      min-width: 58px;
+
+      border-radius: 50%;
+
+      background: #fff;
+
+      color: var(--orange-dark);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+    }
+
+    .support-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+
+      margin-bottom: 4px;
+    }
+
+    .support-content p {
+      color: #6d748c;
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* BUTTON */
+
+    .support-btn {
+      height: 48px;
+
+      border: none;
+
+      border-radius: 14px;
+
+      background: #fff;
+
+      padding: 0 18px;
+
+      color: var(--orange-dark);
+
+      font-size: 15px;
+      font-weight: 600;
+
+      white-space: nowrap;
+
+      cursor: pointer;
+    }
+
+    /* ====================== */
+    /* MOBILE */
+    /* ====================== */
+
+    @media (max-width:480px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .page-title {
+        font-size: 18px;
+      }
+
+      .back-btn {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 12px;
+
+        font-size: 15px;
+      }
+
+      .header-space {
+        width: 36px;
+      }
+
+      .divider {
+        margin-bottom: 16px;
+      }
+
+      .divider::before,
+      .divider::after {
+        width: 42px;
+      }
+
+      /* FAQ */
+
+      .faq-item {
+        border-radius: 16px;
+      }
+
+      .faq-question {
+        min-height: 66px;
+
+        padding: 0 12px;
+
+        gap: 10px;
+      }
+
+      .faq-icon {
+        width: 34px;
+        height: 34px;
+
+        min-width: 34px;
+
+        font-size: 16px;
+      }
+
+      .faq-title {
+        font-size: 13px;
+      }
+
+      .faq-arrow {
+        font-size: 16px;
+      }
+
+      .faq-answer {
+        padding:
+          0 14px 14px 14px;
+      }
+
+      .faq-answer p {
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      /* SUPPORT */
+
+      .support-box {
+        padding: 14px;
+
+        border-radius: 16px;
+
+        gap: 10px;
+      }
+
+      .support-left {
+        gap: 10px;
+      }
+
+      .support-icon {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+
+        font-size: 20px;
+      }
+
+      .support-content h3 {
+        font-size: 13px;
+      }
+
+      .support-content p {
+        font-size: 10px;
+      }
+
+      .support-btn {
+        height: 40px;
+
+        border-radius: 10px;
+
+        padding: 0 12px;
+
+        font-size: 11px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <div class="topbar">
+
+    <a href="./profile.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <div class="page-title">
+      Frequently Asked Questions
+    </div>
+
+    <div class="header-space"></div>
+
+  </div>
+
+  <!-- DIVIDER -->
+
+  <div class="divider">
+    <span>◆ ◆ ◆</span>
+  </div>
+
+  <!-- FAQ -->
+
+  <div class="faq-list">
+
+    <!-- ITEM -->
+
+    <div class="faq-item active">
+
+      <div class="faq-question">
+
+        <div class="faq-icon">
+          <i class="fa-solid fa-question"></i>
+        </div>
+
+        <div class="faq-title">
+          What is LudoBit?
+        </div>
+
+        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+
+      </div>
+
+      <div class="faq-answer">
+
+        <p>
+          LudoBit is an online real-money gaming platform where you can
+          play Ludo with real players, participate in contests,
+          and win real cash rewards.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+
+        <div class="faq-icon">
+          <i class="fa-solid fa-question"></i>
+        </div>
+
+        <div class="faq-title">
+          How do I create an account?
+        </div>
+
+        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+
+      </div>
+
+      <div class="faq-answer">
+
+        <p>
+          Simply register using your mobile number or email,
+          verify your account, and start playing instantly.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+
+        <div class="faq-icon">
+          <i class="fa-solid fa-question"></i>
+        </div>
+
+        <div class="faq-title">
+          How do I add money to my wallet?
+        </div>
+
+        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+
+      </div>
+
+      <div class="faq-answer">
+
+        <p>
+          Go to the Deposit section, choose your preferred payment
+          method, and complete the transaction securely.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+
+        <div class="faq-icon">
+          <i class="fa-solid fa-question"></i>
+        </div>
+
+        <div class="faq-title">
+          How can I withdraw my winnings?
+        </div>
+
+        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+
+      </div>
+
+      <div class="faq-answer">
+
+        <p>
+          Open the Withdraw page, enter your wallet details,
+          and submit your withdrawal request.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ITEM -->
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+
+        <div class="faq-icon">
+          <i class="fa-solid fa-question"></i>
+        </div>
+
+        <div class="faq-title">
+          Is my personal information safe?
+        </div>
+
+        <i class="fa-solid fa-chevron-down faq-arrow"></i>
+
+      </div>
+
+      <div class="faq-answer">
+
+        <p>
+          Yes, all transactions and personal data are encrypted
+          and securely protected on our platform.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SUPPORT -->
+
+  <div class="support-box">
+
+    <div class="support-left">
+
+      <div class="support-icon">
+        <i class="fa-solid fa-headset"></i>
+      </div>
+
+      <div class="support-content">
+
+        <h3>
+          Still have questions?
+        </h3>
+
+        <p>
+          Our support team is here to help you.
+        </p>
+
+      </div>
+
+    </div>
+
+    <button class="support-btn">
+      Contact Support
+    </button>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    /* FAQ TOGGLE */
+
+    const faqItems =
+      document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(function (item) {
+
+      const question =
+        item.querySelector(".faq-question");
+
+      question.addEventListener("click", function () {
+
+        if (item.classList.contains("active")) {
+
+          item.classList.remove("active");
+
+        } else {
+
+          faqItems.forEach(function (faq) {
+
+            faq.classList.remove("active");
+
+          });
+
+          item.classList.add("active");
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
