@@ -449,59 +449,111 @@
         .history-card-wrap.active .toggle-arrow {
             transform: rotate(180deg);
         }
+
+        /* LOSS TEXT */
+        .loss-text {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* LOSS STATUS */
+        .status-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
         /* ========================= */
-/* GAME IMAGE */
-/* ========================= */
+        /* GAME IMAGE */
+        /* ========================= */
 
-.activity-game-img{
+        .activity-game-img {
 
-  width:40px;
-  min-width:40px;
+            width: 40px;
+            min-width: 40px;
 
-  height:40px;
-  min-height:40px;
+            height: 40px;
+            min-height: 40px;
 
-  border-radius:10px;
+            border-radius: 10px;
 
-  object-fit:cover;
+            object-fit: cover;
 
-  display:block;
+            display: block;
 
-  flex-shrink:0;
+            flex-shrink: 0;
 
-  background:#f3f5ff;
+            background: #f3f5ff;
 
-  padding:2px;
-}
+            padding: 2px;
+        }
 
-/* MOBILE */
+        /* MOBILE */
 
-@media (max-width:480px){
+        @media (max-width:480px) {
 
-  .activity-game-img{
+            .activity-game-img {
 
-    width:34px;
-    min-width:34px;
+                width: 34px;
+                min-width: 34px;
 
-    height:34px;
-    min-height:34px;
+                height: 34px;
+                min-height: 34px;
 
-    border-radius:8px;
-  }
+                border-radius: 8px;
+            }
 
-}
+        }
+
+        /* ========================= */
+        /* COPY TOAST */
+        /* ========================= */
+
+        .copy-toast {
+
+            position: fixed;
+
+            left: 50%;
+            bottom: 24px;
+
+            transform: translateX(-50%) translateY(20px);
+
+            background: #111827;
+            color: #fff;
+
+            padding: 10px 16px;
+
+            border-radius: 12px;
+
+            font-size: 12px;
+            font-weight: 500;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: .25s ease;
+
+            z-index: 99999;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+        }
+
+        .copy-toast.show {
+
+            opacity: 1;
+            visibility: visible;
+
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
     <div class="topbar">
 
         <div class="header-row">
 
-            <a  style="text-decoration: none;" href="./profile.html" class="back-btn">
+            <a style="text-decoration: none;" href="./profile.html" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
 
@@ -553,7 +605,9 @@
     <!-- HISTORY -->
 
     <div class="history-list">
-
+<div class="copy-toast" id="copyToast">
+        Copied Successfully
+    </div>
         <!-- ====================== -->
         <!-- DEPOSIT -->
         <!-- ====================== -->
@@ -611,6 +665,11 @@
                 <div class="detail-row">
                     <span>Transaction Type</span>
                     <strong>Deposit</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Wallet Address</span>
+                    <strong>TJ92xA...1KPQ</strong>
                 </div>
 
                 <div class="detail-row">
@@ -702,6 +761,11 @@
                 <div class="detail-row">
                     <span>Transaction Type</span>
                     <strong>Deposit</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Wallet Address</span>
+                    <strong>TJ92xA...1KPQ</strong>
                 </div>
 
                 <div class="detail-row">
@@ -993,293 +1057,293 @@
         </div>
 
     </div>
-<!-- ====================== -->
-<!-- WITHDRAW SUCCESS -->
-<!-- ====================== -->
+    <!-- ====================== -->
+    <!-- WITHDRAW SUCCESS -->
+    <!-- ====================== -->
 
-<div class="history-card-wrap" data-type="withdraw">
+    <div class="history-card-wrap" data-type="withdraw">
 
-  <div class="history-card expandable-card">
+        <div class="history-card expandable-card">
 
-    <div class="history-icon success-bg">
-      <i class="fa-solid fa-upload"></i>
-    </div>
+            <div class="history-icon success-bg">
+                <i class="fa-solid fa-upload"></i>
+            </div>
 
-    <div class="history-content">
+            <div class="history-content">
 
-      <div class="history-title">
-        Withdraw
-      </div>
+                <div class="history-title">
+                    Withdraw
+                </div>
 
-      <div class="history-date">
-        May 16, 2024 • 06:20 PM
-      </div>
+                <div class="history-date">
+                    May 16, 2024 • 06:20 PM
+                </div>
 
-      <div class="tx-row">
+                <div class="tx-row">
 
-        <div class="tx-id">
-          Withdraw ID: WDX174729771122
+                    <div class="tx-id">
+                        Withdraw ID: WDX174729771122
+                    </div>
+
+                    <i class="fa-regular fa-copy copy-icon"></i>
+
+                </div>
+
+            </div>
+
+            <div class="history-right">
+
+                <div class="history-amount success-text">
+                    - 200.00 USDT
+                </div>
+
+                <div class="status-pill status-success">
+                    Success
+                </div>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
         </div>
 
-        <i class="fa-regular fa-copy copy-icon"></i>
+        <!-- DETAILS -->
 
-      </div>
+        <div class="history-details">
 
-    </div>
+            <div class="detail-row">
+                <span>Transaction Type</span>
+                <strong>Withdraw</strong>
+            </div>
 
-    <div class="history-right">
+            <div class="detail-row">
+                <span>Amount</span>
+                <strong>- 200.00 USDT</strong>
+            </div>
 
-      <div class="history-amount success-text">
-        - 200.00 USDT
-      </div>
+            <div class="detail-row">
+                <span>Withdraw Method</span>
+                <strong>USDT TRC20</strong>
+            </div>
 
-      <div class="status-pill status-success">
-        Success
-      </div>
+            <div class="detail-row">
+                <span>Wallet Address</span>
+                <strong>TJ92xA...1KPQ</strong>
+            </div>
 
-    </div>
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>May 16, 2024 • 06:20 PM</strong>
+            </div>
 
-    <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+            <div class="detail-row">
+                <span>Withdraw ID</span>
+                <strong>WDX174729771122</strong>
+            </div>
 
-  </div>
+            <div class="detail-row">
+                <span>Status</span>
 
-  <!-- DETAILS -->
+                <div class="status-pill status-success">
+                    Success
+                </div>
+            </div>
 
-  <div class="history-details">
-
-    <div class="detail-row">
-      <span>Transaction Type</span>
-      <strong>Withdraw</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Amount</span>
-      <strong>- 200.00 USDT</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Withdraw Method</span>
-      <strong>USDT TRC20</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Wallet Address</span>
-      <strong>TJ92xA...1KPQ</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Date & Time</span>
-      <strong>May 16, 2024 • 06:20 PM</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Withdraw ID</span>
-      <strong>WDX174729771122</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Status</span>
-
-      <div class="status-pill status-success">
-        Success
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- ====================== -->
-<!-- WITHDRAW PENDING -->
-<!-- ====================== -->
-
-<div class="history-card-wrap" data-type="withdraw">
-
-  <div class="history-card expandable-card">
-
-    <div class="history-icon pending-bg">
-      <i class="fa-solid fa-upload"></i>
-    </div>
-
-    <div class="history-content">
-
-      <div class="history-title">
-        Withdraw
-      </div>
-
-      <div class="history-date">
-        May 16, 2024 • 08:10 PM
-      </div>
-
-      <div class="tx-row">
-
-        <div class="tx-id">
-          Withdraw ID: WDX174729990123
         </div>
 
-        <i class="fa-regular fa-copy copy-icon"></i>
-
-      </div>
-
     </div>
 
-    <div class="history-right">
+    <!-- ====================== -->
+    <!-- WITHDRAW PENDING -->
+    <!-- ====================== -->
 
-      <div class="history-amount pending-text">
-        - 120.00 USDT
-      </div>
+    <div class="history-card-wrap" data-type="withdraw">
 
-      <div class="status-pill status-pending">
-        Pending
-      </div>
+        <div class="history-card expandable-card">
 
-    </div>
+            <div class="history-icon pending-bg">
+                <i class="fa-solid fa-upload"></i>
+            </div>
 
-    <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+            <div class="history-content">
 
-  </div>
+                <div class="history-title">
+                    Withdraw
+                </div>
 
-  <!-- DETAILS -->
+                <div class="history-date">
+                    May 16, 2024 • 08:10 PM
+                </div>
 
-  <div class="history-details">
+                <div class="tx-row">
 
-    <div class="detail-row">
-      <span>Transaction Type</span>
-      <strong>Withdraw</strong>
-    </div>
+                    <div class="tx-id">
+                        Withdraw ID: WDX174729990123
+                    </div>
 
-    <div class="detail-row">
-      <span>Amount</span>
-      <strong>- 120.00 USDT</strong>
-    </div>
+                    <i class="fa-regular fa-copy copy-icon"></i>
 
-    <div class="detail-row">
-      <span>Withdraw Method</span>
-      <strong>USDT TRC20</strong>
-    </div>
+                </div>
 
-    <div class="detail-row">
-      <span>Wallet Address</span>
-      <strong>TJ9xA8...7KPL</strong>
-    </div>
+            </div>
 
-    <div class="detail-row">
-      <span>Date & Time</span>
-      <strong>May 16, 2024 • 08:10 PM</strong>
-    </div>
+            <div class="history-right">
 
-    <div class="detail-row">
-      <span>Withdraw ID</span>
-      <strong>WDX174729990123</strong>
-    </div>
+                <div class="history-amount pending-text">
+                    - 120.00 USDT
+                </div>
 
-    <div class="detail-row">
-      <span>Status</span>
+                <div class="status-pill status-pending">
+                    Pending
+                </div>
 
-      <div class="status-pill status-pending">
-        Pending
-      </div>
-    </div>
+            </div>
 
-  </div>
+            <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
 
-</div>
-
-<!-- ====================== -->
-<!-- WITHDRAW FAILED -->
-<!-- ====================== -->
-
-<div class="history-card-wrap" data-type="withdraw">
-
-  <div class="history-card expandable-card">
-
-    <div class="history-icon failed-bg">
-      <i class="fa-solid fa-upload"></i>
-    </div>
-
-    <div class="history-content">
-
-      <div class="history-title">
-        Withdraw
-      </div>
-
-      <div class="history-date">
-        May 15, 2024 • 11:45 PM
-      </div>
-
-      <div class="tx-row">
-
-        <div class="tx-id">
-          Withdraw ID: WDX174729662110
         </div>
 
-        <i class="fa-regular fa-copy copy-icon"></i>
+        <!-- DETAILS -->
 
-      </div>
+        <div class="history-details">
+
+            <div class="detail-row">
+                <span>Transaction Type</span>
+                <strong>Withdraw</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Amount</span>
+                <strong>- 120.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Withdraw Method</span>
+                <strong>USDT TRC20</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Wallet Address</span>
+                <strong>TJ9xA8...7KPL</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>May 16, 2024 • 08:10 PM</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Withdraw ID</span>
+                <strong>WDX174729990123</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Status</span>
+
+                <div class="status-pill status-pending">
+                    Pending
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="history-right">
+    <!-- ====================== -->
+    <!-- WITHDRAW FAILED -->
+    <!-- ====================== -->
 
-      <div class="history-amount failed-text">
-        - 75.00 USDT
-      </div>
+    <div class="history-card-wrap" data-type="withdraw">
 
-      <div class="status-pill status-failed">
-        Failed
-      </div>
+        <div class="history-card expandable-card">
+
+            <div class="history-icon failed-bg">
+                <i class="fa-solid fa-upload"></i>
+            </div>
+
+            <div class="history-content">
+
+                <div class="history-title">
+                    Withdraw
+                </div>
+
+                <div class="history-date">
+                    May 15, 2024 • 11:45 PM
+                </div>
+
+                <div class="tx-row">
+
+                    <div class="tx-id">
+                        Withdraw ID: WDX174729662110
+                    </div>
+
+                    <i class="fa-regular fa-copy copy-icon"></i>
+
+                </div>
+
+            </div>
+
+            <div class="history-right">
+
+                <div class="history-amount failed-text">
+                    - 75.00 USDT
+                </div>
+
+                <div class="status-pill status-failed">
+                    Failed
+                </div>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+        </div>
+
+        <!-- DETAILS -->
+
+        <div class="history-details">
+
+            <div class="detail-row">
+                <span>Transaction Type</span>
+                <strong>Withdraw</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Amount</span>
+                <strong>- 75.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Withdraw Method</span>
+                <strong>USDT TRC20</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Failure Reason</span>
+                <strong>Invalid wallet address</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>May 15, 2024 • 11:45 PM</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Withdraw ID</span>
+                <strong>WDX174729662110</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Status</span>
+
+                <div class="status-pill status-failed">
+                    Failed
+                </div>
+            </div>
+
+        </div>
 
     </div>
-
-    <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
-
-  </div>
-
-  <!-- DETAILS -->
-
-  <div class="history-details">
-
-    <div class="detail-row">
-      <span>Transaction Type</span>
-      <strong>Withdraw</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Amount</span>
-      <strong>- 75.00 USDT</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Withdraw Method</span>
-      <strong>USDT TRC20</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Failure Reason</span>
-      <strong>Invalid wallet address</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Date & Time</span>
-      <strong>May 15, 2024 • 11:45 PM</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Withdraw ID</span>
-      <strong>WDX174729662110</strong>
-    </div>
-
-    <div class="detail-row">
-      <span>Status</span>
-
-      <div class="status-pill status-failed">
-        Failed
-      </div>
-    </div>
-
-  </div>
-
-</div>
 
     <!-- ====================== -->
     <!-- ACTIVITIES -->
@@ -1347,11 +1411,6 @@
             </div>
 
             <div class="detail-row">
-                <span>Match Result</span>
-                <strong>Victory</strong>
-            </div>
-
-            <div class="detail-row">
                 <span>Winning Amount</span>
                 <strong>+ 35.00 USDT</strong>
             </div>
@@ -1387,6 +1446,107 @@
         </div>
 
     </div>
+    <!-- ====================== -->
+    <!-- LOSS ACTIVITY -->
+    <!-- ====================== -->
+
+    <div class="history-card-wrap" data-type="activities">
+
+        <div class="history-card expandable-card">
+
+            <!-- ICON -->
+
+            <img src="https://cdn-icons-png.flaticon.com/512/566/566294.png" class="activity-game-img">
+
+            <!-- CONTENT -->
+
+            <div class="history-content">
+
+                <div class="history-title">
+                    Ludo
+                </div>
+
+                <div class="history-date">
+                    May 16, 2024 • 08:05 PM
+                </div>
+
+                <div class="tx-row">
+
+                    <div class="tx-id">
+                        Match ID: MCH174729881999
+                    </div>
+
+                    <i class="fa-regular fa-copy copy-icon"></i>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="history-right">
+
+                <div class="history-amount loss-text">
+                    - 10.00 USDT
+                </div>
+
+                <div class="status-pill status-danger">
+                    Lost
+                </div>
+
+            </div>
+
+            <!-- ARROW -->
+
+            <i class="fa-solid fa-chevron-down arrow-right toggle-arrow"></i>
+
+        </div>
+
+        <!-- DETAILS -->
+
+        <div class="history-details">
+
+            <div class="detail-row">
+                <span>Activity Type</span>
+                <strong>Ludo</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Loss Amount</span>
+                <strong>- 10.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Entry Fee</span>
+                <strong>10.00 USDT</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Opponent</span>
+                <strong>Player_Z81</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>May 16, 2024 • 08:05 PM</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Match ID</span>
+                <strong>MCH174729881999</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Status</span>
+
+                <div class="status-pill status-danger">
+                    Lost
+                </div>
+            </div>
+
+        </div>
+
+    </div>
     <!-- EMPTY -->
 
     <div class="empty-box">
@@ -1396,6 +1556,7 @@
         <span>No more deposits</span>
 
     </div>
+
     <script>
 
         /* ========================= */
@@ -1464,6 +1625,44 @@
             top.addEventListener("click", function () {
 
                 card.classList.toggle("active");
+
+            });
+
+        });
+
+
+        /* ========================= */
+        /* COPY TOAST */
+        /* ========================= */
+
+        const copyIcons =
+            document.querySelectorAll(".copy-icon");
+
+        const copyToast =
+            document.getElementById("copyToast");
+
+        copyIcons.forEach(function (icon) {
+
+            icon.addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                const text =
+                    this.parentElement
+                        .querySelector(".tx-id")
+                        .innerText;
+
+                navigator.clipboard.writeText(text);
+
+                copyToast.classList.add("show");
+
+                clearTimeout(window.copyToastTimer);
+
+                window.copyToastTimer = setTimeout(function () {
+
+                    copyToast.classList.remove("show");
+
+                }, 1800);
 
             });
 

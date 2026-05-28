@@ -552,6 +552,14 @@ body{
 
 }
 
+/* Prevent iOS zoom on inputs */
+
+input,
+select,
+textarea{
+  font-size:16px !important;
+}
+
 </style>
 </head>
 
@@ -569,7 +577,7 @@ body{
     Withdraw
   </div>
 
-  <a href="./deposit-history.html" class="icon-btn">
+  <a href="./withdraw.html" class="icon-btn">
     <i class="fa-regular fa-file-lines"></i>
   </a>
 
@@ -584,7 +592,7 @@ body{
     Crypto
   </button>
 
-  <a class="deposit-tab" href="#">
+  <a class="deposit-tab" href="./fiat-withdraw.html">
     <i class="fa-solid fa-building-columns"></i>
     Fiat
   </a>

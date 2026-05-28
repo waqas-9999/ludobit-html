@@ -35,7 +35,7 @@
     --font-btn: clamp(13px, 3.8vw, 16px);
     --font-trust: clamp(7px, 2.1vw, 9px);
     --font-trust-bold: clamp(8px, 2.3vw, 10px);
-    --hero-h: clamp(160px, 50vw, 240px);
+    --hero-h: clamp(160px, 10vw, 240px);
     --btn-width: clamp(160px, 60%, 240px);
   }
 
@@ -58,6 +58,14 @@
     min-width: var(--mobile-min);
     margin: 0 auto;
   }
+
+  /* Prevent iOS zoom on inputs */
+
+input,
+select,
+textarea{
+  font-size:16px !important;
+}
 
   /* ── APP HEADER (logged in) ── */
   /* ========================= */
@@ -246,6 +254,22 @@
   .hero-background {
     width: 100%;
     height: var(--hero-h);
+    max-height: min(260px, 38vh);
+    background-image: url('./assets/login-banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .hero-wrap-2 {
+    padding: 0 0 0;
+        display: flex;
+    justify-content: center;
+  }
+
+  .hero-background-2 {
+    width: 323px;
+    height: 138px;
     max-height: min(260px, 38vh);
     background-image: url('./assets/home-banner.png');
     background-size: cover;

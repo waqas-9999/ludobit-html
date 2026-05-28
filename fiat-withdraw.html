@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+  --orange:#ff9800;
+  --orange-dark:#ff5e00;
+  --text:#0b1140;
+  --muted:#70758f;
+  --border:#ece7e3;
+  --card:#ffffff;
+  --bg:#f8f8f8;
+  --green:#18c56e;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:14px;
+}
+
+/* HEADER */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.icon-btn{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--orange-dark);
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.page-title{
+  font-size:28px;
+  font-weight:700;
+}
+
+/* TABS */
+
+.deposit-tabs{
+  background:#fff;
+  border-radius:22px;
+  padding:6px;
+  display:flex;
+  margin-bottom:18px;
+  box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+
+.deposit-tab{
+  flex:1;
+  height:58px;
+  border:none;
+  border-radius:18px;
+  background:transparent;
+  color:#7d8198;
+  font-size:18px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.deposit-tab.active{
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+  );
+  color:#fff;
+}
+
+.deposit-tab i{
+  font-size:24px;
+}
+@media (max-width:480px){
+
+  body{
+    padding:10px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  .icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    font-size:18px;
+  }
+
+  .deposit-tabs{
+    border-radius:18px;
+  }
+
+  .deposit-tab{
+    height:48px;
+    font-size:15px;
+  }
+
+  .deposit-tab i{
+    font-size:18px;
+  }
+}
+/* ========================= */
+/* MOBILE OPTIMIZED */
+/* ========================= */
+
+@media (max-width:480px){
+
+  body{
+    padding:6px;
+  }
+
+  /* HEADER */
+
+  .topbar{
+    margin-bottom:10px;
+  }
+
+  .page-title{
+    font-size:18px;
+  }
+
+  .icon-btn{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    font-size:14px;
+  }
+
+  /* TABS */
+
+  .deposit-tabs{
+    padding:4px;
+    border-radius:14px;
+    margin-bottom:10px;
+  }
+
+  .deposit-tab{
+    height:40px;
+    font-size:12px;
+    gap:6px;
+    border-radius:10px;
+  }
+
+  .deposit-tab i{
+    font-size:14px;
+  }
+
+  /* BONUS */
+
+  .bonus-strip{
+    height:36px;
+    font-size:10px;
+    padding:0 10px;
+    gap:6px;
+    margin-bottom:10px;
+  }
+
+  .bonus-strip i{
+    font-size:12px;
+  }
+
+  /* CARD */
+
+  .deposit-card{
+    padding:10px;
+    border-radius:14px;
+    margin-bottom:10px;
+  }
+
+  /* GRID */
+
+  .deposit-grid{
+    gap:8px;
+    margin-bottom:10px;
+  }
+
+  /* DROPDOWN */
+
+  .dropdown-selected{
+    height:48px;
+    border-radius:12px;
+    padding:0 10px;
+  }
+
+  .dropdown-selected span{
+    font-size:11px;
+  }
+
+  .dropdown-selected i{
+    font-size:11px;
+  }
+
+  .selected-left{
+    gap:8px;
+  }
+
+  .coin-img{
+    width:18px;
+    height:18px;
+  }
+
+  /* OPTIONS */
+
+  .dropdown-options{
+    top:54px;
+    padding:5px;
+    border-radius:12px;
+  }
+
+  .dropdown-option{
+    height:40px;
+    border-radius:10px;
+    padding:0 10px;
+    gap:8px;
+  }
+
+  .dropdown-option span{
+    font-size:11px;
+  }
+
+  /* INPUT */
+
+  .deposit-input{
+    height:48px;
+    border-radius:12px;
+    padding:0 12px;
+    font-size:12px;
+    margin-bottom:10px;
+  }
+
+  /* BUTTON */
+
+  .deposit-btn{
+    height:46px;
+    border-radius:12px;
+    font-size:13px;
+    margin-bottom:10px;
+  }
+
+  /* INFO */
+
+  .info-row{
+    gap:6px;
+    font-size:10px;
+    line-height:1.4;
+  }
+
+  .info-row i{
+    font-size:12px;
+    margin-top:1px;
+  }
+
+  /* ADDRESS */
+
+  .address-title{
+    font-size:12px;
+    margin-bottom:10px;
+  }
+
+  .address-box{
+    gap:8px;
+    margin-bottom:10px;
+  }
+
+  .qr-box{
+    width:74px;
+    height:74px;
+    border-radius:10px;
+    padding:6px;
+  }
+
+  .address-copy{
+    padding:8px;
+    border-radius:10px;
+    gap:6px;
+  }
+
+  .address-text{
+    font-size:10px;
+    line-height:1.4;
+  }
+
+  .copy-btn{
+    font-size:14px;
+  }
+
+  /* WARNING */
+
+  .warning-box{
+    padding:10px;
+    border-radius:12px;
+    gap:8px;
+  }
+
+  .warning-icon{
+    width:24px;
+    height:24px;
+    font-size:11px;
+  }
+
+  .warning-text{
+    font-size:10px;
+    line-height:1.5;
+  }
+
+  /* SECURITY */
+
+  .security-box{
+    padding:10px;
+    border-radius:14px;
+    gap:8px;
+  }
+
+  .security-icon{
+    width:32px;
+    height:32px;
+    font-size:14px;
+  }
+
+  .security-text{
+    font-size:10px;
+    line-height:1.5;
+  }
+
+  /* TOAST */
+
+  .toast{
+    height:36px;
+    padding:0 10px;
+    border-radius:10px;
+    font-size:10px;
+    gap:6px;
+    bottom:10px;
+  }
+
+  .toast i{
+    font-size:12px;
+  }
+
+}
+</style>
+<!-- HEADER -->
+
+<div class="topbar">
+
+  <a style="text-decoration: none;" href="deposit.html" class="icon-btn">
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+
+  <div class="page-title">
+    Fiat Withdraw
+  </div>
+
+  <div class="icon-btn">
+    <i class="fa-regular fa-file-lines"></i>
+  </div>
+
+</div>
+
+<!-- TABS -->
+
+<div class="deposit-tabs">
+
+    <a style="text-decoration: none;" href="withdraw.html" class="deposit-tab">
+    <i class="fa-brands fa-bitcoin"></i>
+    Crypto
+    </a>
+  </a>
+
+  <button class="deposit-tab active">
+    <i class="fa-solid fa-building-columns"></i>
+    Fiat
+  </button>
+
+</div>
+    
+</body>
+</html>
